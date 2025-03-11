@@ -79,6 +79,6 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        InputDirection = dir;
+        InputDirection = dir.normalized;
     }
 }
