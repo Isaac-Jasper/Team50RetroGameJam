@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public UnityEvent OnRestart = new();
     public UnityEvent OnPause = new();
     public UnityEvent OnFire = new();
+    public Vector2 InputDirection = Vector2.zero;
 
     public bool LockedInput { get; set; }
     private void Awake() {
@@ -29,6 +30,10 @@ public class InputManager : MonoBehaviour
     }
 
     public void Update() {
+        Vector2 dirInput = Vector2.up*Input.GetAxis("Vertical") + Vector2.right*Input.GetAxis("Horizontal");
+        if (dirInput != Vector2.zero) DirectionPerformed(dirInput);
+        else InputDirection = Vector2.zero;
+        
         if (Input.GetButtonDown("Restart")) {
             RestartPerformed();
         }
@@ -40,8 +45,6 @@ public class InputManager : MonoBehaviour
         if (Input.GetButtonDown("Fire")) {
             FirePerformed();
         }
-
-        
     }
 
     private void PausePerformed() {
@@ -67,5 +70,15 @@ public class InputManager : MonoBehaviour
         if (!CheckIfCanInput()) return;
 
         OnFire?.Invoke();
+    }
+
+    private void DirectionPerformed(Vector2 dir) {
+        Debug.Log("Direction Performed" + "( " + dir.x + ", " + dir.y + ")");
+        if (!CheckIfCanInput()) {
+            InputDirection = Vector2.zero;
+            return;
+        }
+
+        InputDirection = dir;
     }
 }

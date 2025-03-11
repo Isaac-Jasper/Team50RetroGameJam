@@ -217,7 +217,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45f476c7672823242995eeef342575a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -478,7 +478,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45f476c7672823242995eeef342575a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -628,13 +628,13 @@ MonoBehaviour:
   activeCrosshairs: []
   health: 2
   ammo: 2
-  enemyMoveSpeed: 10
+  enemyMoveSpeed: 5
   crosshairMoveSpeed: 2
   damage: 2
   aimRate: 2
   fireRate: 2
   rb: {fileID: 1245078425}
-  angleRange: 5.4
+  angleRange: 0.026
 --- !u!212 &1245078423
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -730,7 +730,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &1245078426
 CircleCollider2D:
@@ -742,7 +742,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45f476c7672823242995eeef342575a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -866,7 +866,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45f476c7672823242995eeef342575a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1000,7 +1000,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45f476c7672823242995eeef342575a3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
