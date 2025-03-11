@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start() {
         activeCrosshairs = new List<GameObject>();
     }   
-    protected abstract void OnMoves();
+    protected abstract void OnMove();
     protected abstract void OnAim();
     protected abstract void OnSpawn();
     protected abstract void OnDeath(); 
