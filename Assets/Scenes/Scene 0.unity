@@ -762,6 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa1f60ad03a749448e44b51be1645f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnKBMove:
+    m_PersistentCalls:
+      m_Calls: []
   OnRestart:
     m_PersistentCalls:
       m_Calls: []
@@ -771,6 +774,7 @@ MonoBehaviour:
   OnFire:
     m_PersistentCalls:
       m_Calls: []
+  InputDirection: {x: 0, y: 0}
 --- !u!4 &1126866275
 Transform:
   m_ObjectHideFlags: 0
