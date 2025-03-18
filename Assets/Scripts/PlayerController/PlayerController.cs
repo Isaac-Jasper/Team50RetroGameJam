@@ -6,7 +6,10 @@ public class PlayerController : MonoBehaviour{
     public float fireRate;
 
     [SerializeField] private int maxAmmo;
+    [SerializeField] private int maxHealth;
     private int ammo;
+    private int health;
+
     
 
     private Rigidbody2D rb;
@@ -17,6 +20,8 @@ public class PlayerController : MonoBehaviour{
         InputManager.Instance.OnFire.AddListener(Fire);
         InputManager.Instance.OnKBMove.AddListener(MoveObject);
         ammo = maxAmmo;
+        health = maxHealth;
+        GameManager.Instance.UpdateHealth(health);
         GameManager.Instance.updateAmmoCount(ammo);
     }
     private void MoveObject(Vector2 input){
@@ -34,6 +39,5 @@ public class PlayerController : MonoBehaviour{
     {
         ammo = maxAmmo;
     }
-
 
 }

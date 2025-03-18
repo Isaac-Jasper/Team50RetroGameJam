@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI ammoText;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private void Awake()
     {
@@ -36,6 +37,11 @@ public class GameManager : MonoBehaviour
     public void updateAmmoCount(int count)
     {
         ammoText.SetText("Ammo: " +  count);
+    }
+
+    public void UpdateHealth(int count)
+    {
+        healthText.SetText("Health: " + count);
     }
 
 }
