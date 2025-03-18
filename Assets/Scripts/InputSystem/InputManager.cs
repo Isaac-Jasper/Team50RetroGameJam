@@ -5,12 +5,13 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
+    public UnityEvent<Vector2> OnKBMove = new UnityEvent<Vector2>();
     public UnityEvent OnRestart = new();
     public UnityEvent OnPause = new();
     public UnityEvent OnFire = new();
     public Vector2 InputDirection = Vector2.zero;
-
     public bool LockedInput { get; set; }
+
     private void Awake() {
         if (Instance != null && Instance != this && Instance.enabled) {
             Destroy(gameObject);
@@ -32,7 +33,10 @@ public class InputManager : MonoBehaviour
     public void Update() {
         Vector2 dirInput = Vector2.up*Input.GetAxis("Vertical") + Vector2.right*Input.GetAxis("Horizontal");
         if (dirInput != Vector2.zero) DirectionPerformed(dirInput);
-        else InputDirection = Vector2.zero;
+        else{
+            InputDirection = Vector2.zero;
+            DirectionPerformed(dirInput);
+        }
         
         if (Input.GetButtonDown("Restart")) {
             RestartPerformed();
@@ -73,12 +77,12 @@ public class InputManager : MonoBehaviour
     }
 
     private void DirectionPerformed(Vector2 dir) {
-        Debug.Log("Direction Performed" + "( " + dir.x + ", " + dir.y + ")");
         if (!CheckIfCanInput()) {
             InputDirection = Vector2.zero;
             return;
         }
-
         InputDirection = dir.normalized;
+        OnKBMove?.Invoke(InputDirection);
+        
     }
 }
