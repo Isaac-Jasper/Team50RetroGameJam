@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Collections;
 using UnityEngine;
 
@@ -13,8 +14,7 @@ public class InnocentDuck : Enemy
     private Vector3 moveDirection; //direction duck is currently moving
     private Vector2 nonZeroVelocity; //velocity of duck right before colliding with wall
 
-    override protected void Start() {
-        base.Start();
+    protected void Start() {
         OnSpawn();
     }
     void Update() {
@@ -22,8 +22,9 @@ public class InnocentDuck : Enemy
             nonZeroVelocity = rb.linearVelocity;
         }
     }
-    protected override void OnAim() {
+    protected override IEnumerator OnAim() {
         //no aim
+        yield return null;
     }
 
     protected override void OnDeath() {
