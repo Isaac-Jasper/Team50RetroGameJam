@@ -28,7 +28,7 @@ public class InnocentDuck : Enemy
     }
 
     protected override void OnDeath() {
-        throw new System.NotImplementedException();
+        base.OnDeath();
     }
 
     protected override void OnMove() {

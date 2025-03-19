@@ -17,5 +17,17 @@ public abstract class Enemy : MonoBehaviour
     protected abstract void OnMove();
     protected abstract IEnumerator OnAim();
     protected abstract void OnSpawn();
-    protected abstract void OnDeath(); 
+    protected virtual void OnDeath() {
+        //increase score? death animation
+        Destroy(gameObject);
+    }
+    protected void OnTriggerEnter2D(Collider2D col)
+    {
+        //if (col.CompareTag("PlayerDamage")) {
+        //    health -= col.transform.getcomponent<playerStats>().damage
+        //}
+        if (health <= 0) {
+            OnDeath();
+        }
+    }
 }

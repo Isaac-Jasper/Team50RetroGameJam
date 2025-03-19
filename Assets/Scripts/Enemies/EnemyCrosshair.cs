@@ -3,8 +3,11 @@ using UnityEngine;
 
 abstract public class EnemyCrosshair : MonoBehaviour
 {
+    [SerializeField]
+    protected GameObject hurtbox;
+
     public int ammo;
-    public float crosshairMoveSpeed, damage, fireRate; 
+    public float crosshairMoveSpeed, damage, fireRate, hurtboxDuration; 
 
     abstract protected IEnumerator OnFire();
     abstract protected void OnMove();
