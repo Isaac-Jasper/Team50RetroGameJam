@@ -115,7 +115,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &3124872331523490082
 CircleCollider2D:
@@ -165,12 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c75e5dc9f6aa14d847b0e8c7591ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 1725758782596052211, guid: b847cf2e12d287547bc9d6566b9a83c5, type: 3}
-  activeCrosshairs: []
+  crosshairPrefab: {fileID: 0}
   health: 1
-  aimAmmo: 0
   enemyMoveSpeed: 10
   aimRate: 5
+  damageOnCollision: 1
+  scoreValue: 10
   rb: {fileID: 4530089942035153527}
   aimPauseTimeUntilAim: 1
   aimPauseTimeAfterAim: 3
