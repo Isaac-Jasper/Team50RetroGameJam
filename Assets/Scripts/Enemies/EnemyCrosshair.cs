@@ -24,19 +24,34 @@ abstract public class EnemyCrosshair : MonoBehaviour
     
     // Method to activate the hurtbox when firing
     protected void ActivateHurtbox()
+{
+    if (hurtbox != null)
     {
-        if (hurtbox != null)
+        // Flash effect
+        SpriteRenderer hurtboxRenderer = hurtbox.GetComponent<SpriteRenderer>();
+        if (hurtboxRenderer != null)
         {
-            hurtbox.SetActive(true);
-            isFiring = true;
-            
-            // Ensure the hurtbox is configured with the correct damage
-            CrosshairHurtbox hurtboxComponent = hurtbox.GetComponent<CrosshairHurtbox>();
-            if (hurtboxComponent != null)
-            {
-                hurtboxComponent.SetDamage((int)damage);
-            }
+            StartCoroutine(FlashSprite(hurtboxRenderer, Color.red, 0.2f));
         }
+        
+        hurtbox.SetActive(true);
+        isFiring = true;
+        
+        // Configure damage
+        CrosshairHurtbox hurtboxComponent = hurtbox.GetComponent<CrosshairHurtbox>();
+        if (hurtboxComponent != null)
+        {
+            hurtboxComponent.SetDamage((int)damage);
+        }
+    }
+}
+
+    private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
+    {
+        Color originalColor = renderer.color;
+        renderer.color = flashColor;
+        yield return new WaitForSeconds(duration);
+        renderer.color = originalColor;
     }
     
     // Method to deactivate the hurtbox after firing

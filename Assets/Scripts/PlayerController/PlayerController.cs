@@ -8,10 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     
     [Header("Weapon Settings")]
-    public float reloadSpeed;
-    public float fireRate;
-    [SerializeField] private int maxAmmo;
-    private int ammo;
+    public float shootCooldown = 0.5f; // Time between shots
+    private float nextFireTime = 0f;
     
     [Header("Health Settings")]
     [SerializeField] private int maxLives = 3;
@@ -46,44 +44,43 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.OnKBMove.AddListener(MoveObject);
         
         // Initialize player state
-        ammo = maxAmmo;
         currentLives = maxLives;
         isDead = false;
         
         // Update UI
-        GameManager.Instance.updateAmmoCount(ammo);
         GameManager.Instance.UpdateLivesDisplay(currentLives);
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Crosshair"), true);
+
     }
     
     private void MoveObject(Vector2 input)
     {
         if (isDead) return;
         rb.linearVelocity = input * moveSpeed;
-    }
+    }   
 
     private void Fire()
     {
-        if (isDead) return;
-        
-        if(ammo <= 0) 
-        {
-            Reload();
-            return;
-        }
-        
-        // Fire logic
-        ammo--;
-        GameManager.Instance.updateAmmoCount(ammo);
-        
-        // TODO: Implement actual weapon firing here (projectile instantiation, etc.)
+        if (isDead || Time.time < nextFireTime) return;
+    
+        // Set next fire time
+        nextFireTime = Time.time + shootCooldown;
+    
+        // Flash effect
+        StartCoroutine(FlashSprite(spriteRenderer, Color.yellow, 0.1f));
+    
+        // TODO: Implement actual weapon firing here
+    }
+    private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
+    {
+        Color originalColor = renderer.color;
+        renderer.color = flashColor;
+        yield return new WaitForSeconds(duration);
+        renderer.color = originalColor;
     }
 
-    private void Reload()
-    {
-        ammo = maxAmmo;
-        GameManager.Instance.updateAmmoCount(ammo);
-    }
-    
     public void TakeDamage(int damageAmount = 1)
     {
         if (isInvincible || isDead) return;
