@@ -1,4 +1,3 @@
-// GameManager.cs complete implementation
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;

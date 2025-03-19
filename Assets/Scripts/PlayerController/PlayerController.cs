@@ -1,4 +1,3 @@
-// PlayerController.cs complete implementation
 using UnityEngine;
 using System.Collections;
 
