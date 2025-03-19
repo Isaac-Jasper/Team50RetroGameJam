@@ -186,6 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752439470486415171}
   - component: {fileID: 8460390129649112995}
+  - component: {fileID: 1300480048583582568}
   m_Layer: 0
   m_Name: Hurtbox
   m_TagString: Crosshair
@@ -244,3 +245,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1300480048583582568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403728834270932085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c1e9fd453520b4e84455a5f309d714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

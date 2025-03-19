@@ -42,8 +42,10 @@ public class BasicEnemy : Enemy
         moveDirection = Vector2.zero;
         OnMove();
         yield return new WaitForSeconds(aimPauseTimeUntilAim);
+    
         //aiming animation here
-        Instantiate(crosshair, transform.position, crosshair.transform.rotation);
+        GameObject spawnedCrosshair = SpawnCrosshair();  // Use our new method instead of Instantiate
+    
         yield return new WaitForSeconds(aimPauseTimeAfterAim);
         moveDirection = temp;
         OnMove();
