@@ -30,7 +30,7 @@ public class BasicEnemy : Enemy
     protected override void OnDeath() {
         //add death logic
         //play death animation here
-        throw new System.NotImplementedException();
+        base.OnDeath();
     }
 
     protected override void OnMove() {
@@ -64,10 +64,6 @@ public class BasicEnemy : Enemy
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.collider.CompareTag("PlayerFire")) {
-            //take damage from player
-        }
-
         if (col.collider.CompareTag("East Wall")) {
             if (rb.linearVelocity.x < 0) return;
             if (rb.linearVelocity.x == 0) {

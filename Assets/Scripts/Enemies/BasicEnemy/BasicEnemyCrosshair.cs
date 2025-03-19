@@ -33,7 +33,9 @@ public class BasicEnemyCrosshair : EnemyCrosshair
         moveDirection = Vector2.zero;
         OnMove();
         yield return new WaitForSeconds(pauseTimeUntilFire);
-        //flash hurtbox
+        hurtbox.SetActive(true);
+        yield return new WaitForSeconds(hurtboxDuration);
+        hurtbox.SetActive(false);
         //play damage animation
         Debug.Log("Fired");
         yield return new WaitForSeconds(pauseTimeAfterFire);

@@ -8,7 +8,7 @@ TagManager:
   - South Wall
   - East Wall
   - West Wall
-  - Arena
+  - Crosshair
   layers:
   - Default
   - TransparentFX
