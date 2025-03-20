@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 540275300880896012}
   - component: {fileID: 223185426903044165}
   m_Layer: 7
-  m_Name: BasicCrosshair
+  m_Name: BombardmentCrosshair
   m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5698112, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -167,14 +167,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtbox: {fileID: 3403728834270932085}
-  crosshairMoveSpeed: 8
+  crosshairMoveSpeed: 0
   damage: 1
-  fireRate: 2
+  fireRate: 0
   hurtboxDuration: 0.1
   rb: {fileID: 8732174585770467874}
-  pauseTimeUntilFire: 0.5
+  pauseTimeUntilFire: 1
   pauseTimeAfterFire: 0.2
-  angleRange: 0.136
+  angleRange: 0
 --- !u!1 &3403728834270932085
 GameObject:
   m_ObjectHideFlags: 0

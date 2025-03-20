@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4530089942035153527}
   - component: {fileID: 3124872331523490082}
   - component: {fileID: 437346723451940552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasicEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c75e5dc9f6aa14d847b0e8c7591ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairPrefab: {fileID: 0}
+  crosshairPrefab: {fileID: 1725758782596052211, guid: b847cf2e12d287547bc9d6566b9a83c5, type: 3}
   health: 1
-  enemyMoveSpeed: 10
+  enemyMoveSpeed: 5
   aimRate: 5
   damageOnCollision: 1
   scoreValue: 10
