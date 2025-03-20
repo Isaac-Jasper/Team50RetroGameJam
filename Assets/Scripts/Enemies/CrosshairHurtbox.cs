@@ -1,4 +1,3 @@
-// CrosshairHurtbox.cs - new script
 using UnityEngine;
 
 public class CrosshairHurtbox : MonoBehaviour

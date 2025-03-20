@@ -1,4 +1,3 @@
-// GameManager.cs complete implementation
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     
@@ -48,12 +46,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScore(0);
-    }
-
-    public void updateAmmoCount(int count)
-    {
-        if (ammoText != null)
-            ammoText.SetText("Ammo: " + count);
     }
     
     public void UpdateLivesDisplay(int lives)
@@ -105,7 +97,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         currentScore = 0;
         
-        // Hide game over UI
+        // Hide game over UI - ensure this runs before scene change
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
         
