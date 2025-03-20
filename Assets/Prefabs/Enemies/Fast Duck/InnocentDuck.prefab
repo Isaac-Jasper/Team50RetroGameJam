@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.45882353, g: 1, b: 0.49411765, a: 1}
+  m_Color: {r: 1, g: 0.3679244, b: 0.79686284, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,12 +104,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairPrefab: {fileID: 0}
   health: 1
-  enemyMoveSpeed: 1.5
+  enemyMoveSpeed: 8
   aimRate: 0
   damageOnCollision: 1
   scoreValue: 10
   rb: {fileID: 6057096837242971595}
-  angleRange: 0.01
+  angleRange: 0.106
 --- !u!50 &6057096837242971595
 Rigidbody2D:
   serializedVersion: 5

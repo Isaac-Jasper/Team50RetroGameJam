@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3563721369598360195
+--- !u!1 &5622302966926595327
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8494411459297366325}
-  - component: {fileID: 1225675286536273260}
-  - component: {fileID: 4273910732800057743}
-  - component: {fileID: 6057096837242971595}
-  - component: {fileID: 1067442219096179654}
+  - component: {fileID: 5730801521616644424}
+  - component: {fileID: 1420738570385472406}
+  - component: {fileID: 4530089942035153527}
+  - component: {fileID: 3124872331523490082}
+  - component: {fileID: 437346723451940552}
   m_Layer: 6
-  m_Name: InnocentDuck
+  m_Name: BombardmentEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8494411459297366325
+--- !u!4 &5730801521616644424
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563721369598360195}
+  m_GameObject: {fileID: 5622302966926595327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.99, y: 1.99, z: 0}
@@ -35,13 +35,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1225675286536273260
+--- !u!212 &1420738570385472406
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563721369598360195}
+  m_GameObject: {fileID: 5622302966926595327}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.45882353, g: 1, b: 0.49411765, a: 1}
+  m_Color: {r: 0.97735846, g: 0.92333275, b: 0.46286213, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,34 +90,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4273910732800057743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563721369598360195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3db82344dcb69bf43a534036827049c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshairPrefab: {fileID: 0}
-  health: 1
-  enemyMoveSpeed: 1.5
-  aimRate: 0
-  damageOnCollision: 1
-  scoreValue: 10
-  rb: {fileID: 6057096837242971595}
-  angleRange: 0.01
---- !u!50 &6057096837242971595
+--- !u!50 &4530089942035153527
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563721369598360195}
+  m_GameObject: {fileID: 5622302966926595327}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -135,15 +115,15 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &1067442219096179654
+--- !u!58 &3124872331523490082
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563721369598360195}
+  m_GameObject: {fileID: 5622302966926595327}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -173,3 +153,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &437346723451940552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622302966926595327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c75e5dc9f6aa14d847b0e8c7591ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairPrefab: {fileID: 1725758782596052211, guid: 646e60f6ab6717146847917c0d33ea3c, type: 3}
+  health: 1
+  enemyMoveSpeed: 5
+  aimRate: 0.8
+  damageOnCollision: 1
+  scoreValue: 10
+  rb: {fileID: 4530089942035153527}
+  aimPauseTimeUntilAim: 0
+  aimPauseTimeAfterAim: 0
+  angleRange: 0.055
