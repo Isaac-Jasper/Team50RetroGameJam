@@ -39,18 +39,21 @@ public class PlayerController : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         
-        InputManager.Instance.OnFire.AddListener(Fire);
-        InputManager.Instance.OnKBMove.AddListener(MoveObject);
-        
         // Initialize player state
         currentLives = maxLives;
         isDead = false;
-        
-        // Update UI
-        GameManager.Instance.UpdateLivesDisplay(currentLives);
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Crosshair"), true);
+
+    }
+
+    private void Start()
+    {
+        InputManager.Instance.OnFire.AddListener(Fire);
+        InputManager.Instance.OnKBMove.AddListener(MoveObject);
+
+        GameManager.Instance.UpdateLivesDisplay(currentLives);
 
     }
     
