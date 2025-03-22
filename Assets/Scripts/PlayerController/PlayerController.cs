@@ -77,6 +77,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+    {
+        UpgradeManager.Instance.ShowUpgradeSelection();
+    }
     }
     
     private void MoveObject(Vector2 input)
@@ -174,6 +179,13 @@ public class PlayerController : MonoBehaviour
         GlobalUpgradeSettings.dashUnlocked = true;
         Debug.Log("Dash ability unlocked!");
     }
+
+    public void getSmaller()
+    {
+        transform.localScale = new Vector3(.75f, .75f, .75f); // Double the size
+        Debug.Log("Smol!");
+    }
+
 
     // New method to add a life
     public void AddLife()

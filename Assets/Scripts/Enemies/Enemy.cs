@@ -68,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
         // Check for life steal chance
         if (GlobalUpgradeSettings.lifeStealChance > 0 && Random.value < GlobalUpgradeSettings.lifeStealChance)
         {
-            PlayerController player = FindObjectOfType<PlayerController>();
+            PlayerController player = FindFirstObjectByType<PlayerController>();
             if (player != null)
             {
                 player.AddLife();

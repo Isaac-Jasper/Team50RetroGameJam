@@ -54,7 +54,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>();
+        player = FindFirstObjectByType<PlayerController>();
         if (player != null)
         {
             originalMoveSpeed = player.moveSpeed;
@@ -76,11 +76,10 @@ public class UpgradeManager : MonoBehaviour
             }));
 
         allUpgrades.Add(new Upgrade("Decrease Crosshair Size", 
-            "Makes enemy crosshairs 20% smaller", 
+            "Makes your crosshair 20% smaller", 
             upgradeIcons[1], 
             () => {
-                // This will be applied to new crosshairs through a global setting
-                GlobalUpgradeSettings.crosshairSizeMultiplier *= 0.8f;
+                player.getSmaller();
             }));
 
         allUpgrades.Add(new Upgrade("Extra Life", 
