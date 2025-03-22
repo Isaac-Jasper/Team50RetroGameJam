@@ -60,33 +60,36 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = input * moveSpeed;
     }   
 
-    private void Fire()
+        private void Fire()
     {
         if (isDead || Time.time < nextFireTime) return;
-        
+
         // Set next fire time
         nextFireTime = Time.time + shootCooldown;
 
-        // Flash effect for feedback
+        // Flash effect for visual feedback
         StartCoroutine(FlashSprite(spriteRenderer, Color.yellow, 0.1f));
 
-        // Convert mouse position to world coordinates
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        // Get the mouse position in world coordinates
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        // Calculate direction from the player's position to the mouse position
+        Vector2 fireDirection = ((Vector2)mouseWorldPos - (Vector2)transform.position).normalized;
 
-        // Do a raycast from the mouse position
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+        // Perform a raycast starting at the player's position in the computed direction
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, fireDirection);
         if (hit.collider != null)
         {
             // Check if the hit object has an Enemy component
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                // Damage the enemy; you can change the damage amount as needed
+                // Apply damage to the enemy; adjust damage amount as needed
                 enemy.TakeDamage(1);
             }
         }
     }
+
 
     private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
     {
