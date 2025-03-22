@@ -60,18 +60,37 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = input * moveSpeed;
     }   
 
-    private void Fire()
+        private void Fire()
     {
         if (isDead || Time.time < nextFireTime) return;
-    
+
         // Set next fire time
         nextFireTime = Time.time + shootCooldown;
-    
-        // Flash effect
+
+        // Flash effect for visual feedback
         StartCoroutine(FlashSprite(spriteRenderer, Color.yellow, 0.1f));
-    
-        // TODO: Implement actual weapon firing here
+
+        // Get the mouse position in world coordinates
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        // Calculate direction from the player's position to the mouse position
+        Vector2 fireDirection = ((Vector2)mouseWorldPos - (Vector2)transform.position).normalized;
+
+        // Perform a raycast starting at the player's position in the computed direction
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, fireDirection);
+        if (hit.collider != null)
+        {
+            // Check if the hit object has an Enemy component
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                // Apply damage to the enemy; adjust damage amount as needed
+                enemy.TakeDamage(1);
+            }
+        }
     }
+
+
     private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
     {
         Color originalColor = renderer.color;
