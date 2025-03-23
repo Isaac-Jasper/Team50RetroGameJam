@@ -21,7 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hitEffectDuration = 0.5f;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip deathSound;
-    
+
+    [Header("Firing Settings")]
+    public int shotDamage = 1;
+    public float shotRadius = 0.5f;
+
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
@@ -60,33 +64,20 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = input * moveSpeed;
     }   
 
-        private void Fire()
+    public void Fire()
     {
-        if (isDead || Time.time < nextFireTime) return;
-
-        // Set next fire time
+        // Respect shoot cooldown
+        if (Time.time < nextFireTime) return;
         nextFireTime = Time.time + shootCooldown;
-
-        // Flash effect for visual feedback
-        StartCoroutine(FlashSprite(spriteRenderer, Color.yellow, 0.1f));
-
-        // Get the mouse position in world coordinates
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        // Calculate direction from the player's position to the mouse position
-        Vector2 fireDirection = ((Vector2)mouseWorldPos - (Vector2)transform.position).normalized;
-
-        // Perform a raycast starting at the player's position in the computed direction
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, fireDirection);
-        if (hit.collider != null)
+        Debug.Log("Shot fired!");
+        // Use OverlapCircleAll to detect any enemy colliders overlapping the player
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, shotRadius, enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
         {
-            // Check if the hit object has an Enemy component
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                // Apply damage to the enemy; adjust damage amount as needed
-                enemy.TakeDamage(1);
-            }
+            // This will call a TakeDamage method on the enemy if one exists.
+            enemy.gameObject.SendMessage("TakeDamage", shotDamage, SendMessageOptions.DontRequireReceiver);
         }
     }
 

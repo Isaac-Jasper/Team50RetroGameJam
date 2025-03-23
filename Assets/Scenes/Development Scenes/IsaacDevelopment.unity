@@ -593,6 +593,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2219695972008458660, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
+      propertyPath: shotEffectPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3161915130110954881, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
