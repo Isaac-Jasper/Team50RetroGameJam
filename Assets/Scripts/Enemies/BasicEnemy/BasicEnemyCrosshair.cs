@@ -42,7 +42,7 @@ public class BasicEnemyCrosshair : EnemyCrosshair
         OnDeath();
     }
 
-    private IEnumerator FireTimer() {
+    protected override IEnumerator FireTimer() {
         while (true) {
             yield return new WaitForSeconds(fireRate);
             StartCoroutine(OnFire());

@@ -1,5 +1,6 @@
 // EnemyCrosshair.cs modifications
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 abstract public class EnemyCrosshair : MonoBehaviour
@@ -15,6 +16,7 @@ abstract public class EnemyCrosshair : MonoBehaviour
     abstract protected IEnumerator OnFire();
     abstract protected void OnMove();
     abstract protected void OnSpawn();
+    protected abstract IEnumerator FireTimer();
     
     virtual protected void OnDeath() {
         Destroy(gameObject);
