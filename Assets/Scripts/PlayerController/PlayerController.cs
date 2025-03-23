@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.OnFire.AddListener(Fire);
+        InputManager.Instance.OnDash.AddListener(DoDash);
         InputManager.Instance.OnKBMove.AddListener(MoveObject);
 
         GameManager.Instance.UpdateLivesDisplay(currentLives);
@@ -90,6 +91,13 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = input * moveSpeed;
         movement = input; // Store for dash direction
     }   
+
+    private void DoDash() {
+        if (canDash && GlobalUpgradeSettings.dashUnlocked && dashCooldownTimer <= 0)
+        {
+            StartCoroutine(Dash());
+        }
+    }
 
     private void Fire()
     {

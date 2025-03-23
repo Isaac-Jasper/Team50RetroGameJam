@@ -37,7 +37,7 @@ public class BasicEnemyCrosshair : EnemyCrosshair
         yield return new WaitForSeconds(hurtboxDuration);
         hurtbox.SetActive(false);
         //play damage animation
-        Debug.Log("Fired");
+        //Debug.Log("Fired");
         yield return new WaitForSeconds(pauseTimeAfterFire);
         OnDeath();
     }
