@@ -21,6 +21,11 @@ public class DistanceEnemy : Enemy
         if (doMove) {
             OnMove();
         }
+        if (rb.linearVelocity.x > 0) {
+            spriteObject.transform.rotation = Quaternion.Euler(0,180,0);
+        } else if (rb.linearVelocity.x < 0) {
+            spriteObject.transform.rotation = Quaternion.Euler(0,0,0);
+        }
     }
 
     protected override void OnDeath() {

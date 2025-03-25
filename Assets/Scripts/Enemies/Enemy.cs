@@ -6,6 +6,8 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField]
     protected GameObject crosshairPrefab;  // Changed from crosshair to crosshairPrefab
+    [SerializeField]
+    protected GameObject spriteObject;
 
     [SerializeField]
     protected int health = 1;
