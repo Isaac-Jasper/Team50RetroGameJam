@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public UnityEvent OnRestart = new();
     public UnityEvent OnPause = new();
     public UnityEvent OnFire = new();
+    public UnityEvent OnDash = new();
     public Vector2 InputDirection = Vector2.zero;
     public bool LockedInput { get; set; }
 
@@ -49,6 +50,10 @@ public class InputManager : MonoBehaviour
         if (Input.GetButtonDown("Fire")) {
             FirePerformed();
         }
+
+        if (Input.GetButtonDown("Dash")) {
+            DashPerformed();
+        }
     }
 
     private void PausePerformed() {
@@ -70,10 +75,17 @@ public class InputManager : MonoBehaviour
     }
 
     private void FirePerformed() {
-        Debug.Log("Fire Performed");
+        //Debug.Log("Fire Performed");
         if (!CheckIfCanInput()) return;
 
         OnFire?.Invoke();
+    }
+
+    private void DashPerformed() {
+        Debug.Log("Dash Performed");
+        if (!CheckIfCanInput()) return;
+
+        OnDash?.Invoke();
     }
 
     private void DirectionPerformed(Vector2 dir) {
