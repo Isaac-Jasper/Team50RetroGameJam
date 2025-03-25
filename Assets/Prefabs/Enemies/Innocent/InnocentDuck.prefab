@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshairPrefab: {fileID: 0}
+  spriteObject: {fileID: 3563721369598360195}
   health: 1
   enemyMoveSpeed: 1.5
   aimRate: 0
