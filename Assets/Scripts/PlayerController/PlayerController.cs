@@ -108,9 +108,11 @@ public class PlayerController : MonoBehaviour
         // Set next fire time
         nextFireTime = Time.time + shootCooldown;
 
+        ScreenEffectManager.Instance.DoImpactFrames();
+
         // Flash effect for visual feedback
-        float randRotation = Random.Range(0,360);
-        Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
+        //float randRotation = Random.Range(0,360);
+        //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
 
         // Get the mouse position in world coordinates
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
