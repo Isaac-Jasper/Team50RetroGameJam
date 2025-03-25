@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Visual Feedback")]
     [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private GameObject flareEffect;
     [SerializeField] private float hitEffectDuration = 0.5f;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip deathSound;
@@ -107,7 +109,8 @@ public class PlayerController : MonoBehaviour
         nextFireTime = Time.time + shootCooldown;
 
         // Flash effect for visual feedback
-        StartCoroutine(FlashSprite(spriteRenderer, Color.yellow, 0.1f));
+        float randRotation = Random.Range(0,360);
+        Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
 
         // Get the mouse position in world coordinates
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -125,7 +128,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Apply damage to the enemy; apply critical hits if enabled
                 int damage = 1;
-                if (Random.value < GlobalUpgradeSettings.criticalHitChance)
+                if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
                 {
                     damage = 2;
                     // Optional: Visual feedback for critical hit
