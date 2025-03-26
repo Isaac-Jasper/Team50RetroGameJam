@@ -112,14 +112,8 @@ public class PlayerController : MonoBehaviour
         float randRotation = Random.Range(0,360);
         Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
 
-        // Get the mouse position in world coordinates
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        // Calculate direction from the player's position to the mouse position
-        Vector2 fireDirection = ((Vector2)mouseWorldPos - (Vector2)transform.position).normalized;
-
-        // Perform a raycast starting at the player's position in the computed direction
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, fireDirection);
+        // Perform a raycast directly at the player's position
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
         if (hit.collider != null)
         {
             // Check if the hit object has an Enemy component
