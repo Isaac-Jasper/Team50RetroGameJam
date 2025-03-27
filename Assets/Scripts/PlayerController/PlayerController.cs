@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     
     [Header("Weapon Settings")]
+    public int damage = 1;
+    public int criticalMultiplier = 2;
+    public float hurtboxRadius = 1;
     public float shootCooldown = 0.5f; // Time between shots
     private float nextFireTime = 0f;
     
@@ -25,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     
     [Header("Dash Settings")]
-    [SerializeField] private float dashDistance = 3f;
+    // [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private GameObject dashEffectPrefab;
@@ -102,44 +105,36 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Fire()
+{
+    if (isDead || Time.time < nextFireTime) return;
+
+    // Set next fire time
+    nextFireTime = Time.time + shootCooldown;
+
+    // Flash effect for visual feedback
+    float randRotation = Random.Range(0,360);
+    //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
+
+    // Use OverlapCircle to find nearby enemies
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, hurtboxRadius, LayerMask.GetMask("Enemy"));
+    
+    foreach (Collider2D enemyCollider in hitEnemies)
     {
-        if (isDead || Time.time < nextFireTime) return;
-
-        // Set next fire time
-        nextFireTime = Time.time + shootCooldown;
-
-        ScreenEffectManager.Instance.DoImpactFrames();
-
-        // Flash effect for visual feedback
-        //float randRotation = Random.Range(0,360);
-        //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
-
-        // Get the mouse position in world coordinates
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        // Calculate direction from the player's position to the mouse position
-        Vector2 fireDirection = ((Vector2)mouseWorldPos - (Vector2)transform.position).normalized;
-
-        // Perform a raycast starting at the player's position in the computed direction
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, fireDirection);
-        if (hit.collider != null)
+        Enemy enemy = enemyCollider.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            // Check if the hit object has an Enemy component
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy != null)
+            // Apply damage to the enemy; apply critical hits if enabled
+            int atkDamage = damage;
+            if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
             {
-                // Apply damage to the enemy; apply critical hits if enabled
-                int damage = 1;
-                if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
-                {
-                    damage = 2;
-                    // Optional: Visual feedback for critical hit
-                    StartCoroutine(FlashSprite(spriteRenderer, Color.red, 0.1f));
-                }
-                enemy.TakeDamage(damage);
+                damage *= criticalMultiplier;
+                // Optional: Visual feedback for critical hit
+                StartCoroutine(FlashSprite(spriteRenderer, Color.red, 0.1f));
             }
+            enemy.TakeDamage(damage);
         }
     }
+}
 
     private IEnumerator Dash()
     {

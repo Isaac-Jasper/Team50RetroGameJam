@@ -115,10 +115,10 @@ MonoBehaviour:
   crosshairMoveSpeed: 8
   damage: 1
   fireRate: 2
-  hurtboxDuration: 0.1
+  hurtboxDuration: 2
   rb: {fileID: 8732174585770467874}
-  pauseTimeUntilFire: 0.5
-  pauseTimeAfterFire: 0.2
+  pauseTimeUntilFire: 0.1
+  pauseTimeAfterFire: 0.1
   angleRange: 0.136
 --- !u!1 &2410017139047548551
 GameObject:

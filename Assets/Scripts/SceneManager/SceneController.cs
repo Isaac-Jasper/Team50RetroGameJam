@@ -50,6 +50,11 @@ public class SceneController : MonoBehaviour
         //initialize any on scene start objects here
     }
 
+    public void InitiateSceneChange(int scene)
+    {
+        StartCoroutine(ChangeScene(scene));
+    }
+
     public IEnumerator ChangeScene(int scene) {
         InputManager.Instance.LockedInput = true;
         float time = 0;
