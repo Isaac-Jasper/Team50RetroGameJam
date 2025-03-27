@@ -77,13 +77,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairPrefab: {fileID: 4689032966538438663, guid: ce354bdf38cfec542bd60df41f1dcfa1, type: 3}
   spriteObject: {fileID: 6873077352996846449}
-  health: 1
-  enemyMoveSpeed: 5
+  health: 2
+  enemyMoveSpeed: 7
   aimRate: 5
   damageOnCollision: 1
   scoreValue: 10
   rb: {fileID: 3379317251290114729}
-  aimPauseTimeUntilAim: 1
+  aimPauseTimeUntilAim: 0.5
   aimPauseTimeAfterAim: 0
   angleRange: 0.055
 --- !u!70 &875764287053600124
