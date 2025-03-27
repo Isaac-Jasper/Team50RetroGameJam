@@ -8,6 +8,8 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject crosshairPrefab;  // Changed from crosshair to crosshairPrefab
     [SerializeField]
     protected GameObject spriteObject;
+    [SerializeField]
+    protected GameObject deathAnimationObject;
 
     [SerializeField]
     protected int health = 1;
@@ -61,6 +63,11 @@ public abstract class Enemy : MonoBehaviour
     }
     
     protected virtual void OnDeath() {
+        //play death animation
+        if (deathAnimationObject != null) {
+            Instantiate(deathAnimationObject, transform.position, deathAnimationObject.transform.rotation);
+        }
+
         // Increase score
         if (GameManager.Instance != null)
         {
