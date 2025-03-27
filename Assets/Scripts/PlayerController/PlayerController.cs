@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     
     [Header("Dash Settings")]
-    [SerializeField] private float dashDistance = 3f;
+    // [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private GameObject dashEffectPrefab;
@@ -102,36 +102,36 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Fire()
+{
+    if (isDead || Time.time < nextFireTime) return;
+
+    // Set next fire time
+    nextFireTime = Time.time + shootCooldown;
+
+    // Flash effect for visual feedback
+    float randRotation = Random.Range(0,360);
+    Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
+
+    // Use OverlapCircle to find nearby enemies
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 1f, LayerMask.GetMask("Enemy"));
+    
+    foreach (Collider2D enemyCollider in hitEnemies)
     {
-        if (isDead || Time.time < nextFireTime) return;
-
-        // Set next fire time
-        nextFireTime = Time.time + shootCooldown;
-
-        // Flash effect for visual feedback
-        float randRotation = Random.Range(0,360);
-        Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
-
-        // Perform a raycast directly at the player's position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
-        if (hit.collider != null)
+        Enemy enemy = enemyCollider.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            // Check if the hit object has an Enemy component
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy != null)
+            // Apply damage to the enemy; apply critical hits if enabled
+            int damage = 1;
+            if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
             {
-                // Apply damage to the enemy; apply critical hits if enabled
-                int damage = 1;
-                if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
-                {
-                    damage = 2;
-                    // Optional: Visual feedback for critical hit
-                    StartCoroutine(FlashSprite(spriteRenderer, Color.red, 0.1f));
-                }
-                enemy.TakeDamage(damage);
+                damage = 2;
+                // Optional: Visual feedback for critical hit
+                StartCoroutine(FlashSprite(spriteRenderer, Color.red, 0.1f));
             }
+            enemy.TakeDamage(damage);
         }
     }
+}
 
     private IEnumerator Dash()
     {
