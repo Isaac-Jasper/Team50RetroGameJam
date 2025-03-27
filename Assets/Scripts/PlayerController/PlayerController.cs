@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Settings")]
     public int damage = 1;
     public int criticalMultiplier = 2;
+    public float hurtboxRadius = 1;
     public float shootCooldown = 0.5f; // Time between shots
     private float nextFireTime = 0f;
     
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
     //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
 
     // Use OverlapCircle to find nearby enemies
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 1f, LayerMask.GetMask("Enemy"));
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, hurtboxRadius, LayerMask.GetMask("Enemy"));
     
     foreach (Collider2D enemyCollider in hitEnemies)
     {
