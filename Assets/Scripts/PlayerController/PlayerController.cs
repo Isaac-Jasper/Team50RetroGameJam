@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     
     [Header("Dash Settings")]
-    [SerializeField] private float dashDistance = 3f;
+    //[SerializeField] private float dashDistance = 3f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private GameObject dashEffectPrefab;
