@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     
     [Header("Weapon Settings")]
+    public int damage = 1;
+    public int criticalMultiplier = 2;
     public float shootCooldown = 0.5f; // Time between shots
     private float nextFireTime = 0f;
     
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     // Flash effect for visual feedback
     float randRotation = Random.Range(0,360);
-    Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
+    //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
 
     // Use OverlapCircle to find nearby enemies
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 1f, LayerMask.GetMask("Enemy"));
@@ -121,10 +123,10 @@ public class PlayerController : MonoBehaviour
         if (enemy != null)
         {
             // Apply damage to the enemy; apply critical hits if enabled
-            int damage = 1;
+            int atkDamage = damage;
             if (UnityEngine.Random.value < GlobalUpgradeSettings.criticalHitChance)
             {
-                damage = 2;
+                damage *= criticalMultiplier;
                 // Optional: Visual feedback for critical hit
                 StartCoroutine(FlashSprite(spriteRenderer, Color.red, 0.1f));
             }
