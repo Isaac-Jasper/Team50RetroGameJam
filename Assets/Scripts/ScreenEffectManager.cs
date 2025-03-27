@@ -27,13 +27,12 @@ public class ScreenEffectManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
-    void Start()
+
+    private void OnEnable()
     {
-        if (ShakeCamera == null) {
+        if(ShakeCamera == null)
             ShakeCamera = Camera.main.gameObject;
-        }
         startPos = ShakeCamera.transform.position;
         startRotation = ShakeCamera.transform.rotation;
     }

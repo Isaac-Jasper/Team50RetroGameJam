@@ -1111,6 +1111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScreenEffectManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4514411108232554383, guid: b8efac8df62158949bf1b2c843a22655, type: 3}
+      propertyPath: ShakeCamera
+      value: 
+      objectReference: {fileID: 1655653613}
     - target: {fileID: 7287793518595773547, guid: b8efac8df62158949bf1b2c843a22655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.07738661
