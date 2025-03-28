@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    protected Rigidbody2D rb;
     [SerializeField]
     protected GameObject crosshairPrefab;  // Changed from crosshair to crosshairPrefab
     [SerializeField]
@@ -23,9 +27,39 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int scoreValue = 10;
 
-    protected abstract void OnMove();
+    private readonly float FLY_UP_SPEED_MULT = 2;
+
+    protected bool doMove = false;
+
+    protected virtual void Start() {
+        doMove = true;
+        if (transform.position.y <= -4) {
+            StartCoroutine(FlyUpStart());
+        } else {
+            OnSpawn();
+        }
+    }
     protected abstract IEnumerator OnAim();
+    protected virtual void OnMove() {
+        if (doMove) return;
+    }
     protected abstract void OnSpawn();
+
+    protected IEnumerator FlyUpStart() {
+        doMove = false;
+        //float randDirection = Random.Range(-15,15);
+        float randHeight = Random.Range(-2,3.5f);
+        float startPos = transform.position.y;
+        float timef = (2*randHeight/enemyMoveSpeed-2*startPos)/(FLY_UP_SPEED_MULT+1);
+        float startTime = Time.time;
+        while (transform.position.y < randHeight) {
+            float time =  Time.time - startTime;
+            float mult = FLY_UP_SPEED_MULT*(1-time/timef)+time/timef;
+            rb.linearVelocity = enemyMoveSpeed * Mathf.Max(1,mult) * Vector2.up;
+            yield return null;
+        }
+        OnSpawn();
+    }
     
     // Method to spawn a crosshair
     protected GameObject SpawnCrosshair()
@@ -63,6 +97,7 @@ public abstract class Enemy : MonoBehaviour
     }
     
     protected virtual void OnDeath() {
+        StopCoroutine(FlyUpStart());
         //play death animation
         if (deathAnimationObject != null) {
             Instantiate(deathAnimationObject, transform.position, deathAnimationObject.transform.rotation);

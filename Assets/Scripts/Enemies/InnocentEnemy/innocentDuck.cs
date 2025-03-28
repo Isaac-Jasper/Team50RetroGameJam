@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class InnocentDuck : Enemy
 {
-    [SerializeField]
-    private Rigidbody2D rb;
-
     [Header("% of circle path can deviate")]
     [Range(0.0f, 0.25f)]
     [SerializeField]
@@ -14,9 +11,6 @@ public class InnocentDuck : Enemy
     private Vector3 moveDirection; //direction duck is currently moving
     private Vector2 nonZeroVelocity; //velocity of duck right before colliding with wall
 
-    protected void Start() {
-        OnSpawn();
-    }
     void Update() {
         if (rb.linearVelocity.magnitude > 0) {
             nonZeroVelocity = rb.linearVelocity;
