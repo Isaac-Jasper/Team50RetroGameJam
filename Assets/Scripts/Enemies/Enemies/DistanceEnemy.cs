@@ -5,18 +5,11 @@ using UnityEngine;
 public class DistanceEnemy : Enemy
 {
     [SerializeField]
-    private Rigidbody2D rb;
-
-    [SerializeField]
     private float aimPauseTimeUntilAim, aimPauseTimeAfterAim;
     [SerializeField]
     private float distance, rotateSpeed;
     private Transform playerTransform;
-    private bool doMove = true;
 
-    protected void Start() {
-        OnSpawn();
-    }
     void Update() {
         if (doMove) {
             OnMove();
