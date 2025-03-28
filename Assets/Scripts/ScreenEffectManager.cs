@@ -16,9 +16,9 @@ public class ScreenEffectManager : MonoBehaviour
     [Header("Impact Frames Settings")]
     public static ScreenEffectManager Instance { get; private set; }
     [SerializeField]
-    private float impactFramesLength;
+    private float impactFramesLength, blackCanvasImpactFramesLength;
     [SerializeField]
-    private CanvasGroup blackScreenCanvas;
+    private SpriteRenderer blackScreenCanvas;
 
     private void Awake() {
         if (Instance != null && Instance != this && Instance.enabled)
@@ -48,8 +48,14 @@ public class ScreenEffectManager : MonoBehaviour
 
     public void DoImpactFrames() {
         StopCoroutine(ImpactFrames());
-
+        Time.timeScale = 1;
         StartCoroutine(ImpactFrames());
+    }
+
+    public void DoImpactFramesWithBlackCanvas() {
+        StopCoroutine(BlackCanvasImpactFrames());
+        Time.timeScale = 1;
+        StartCoroutine(BlackCanvasImpactFrames());
     }
 
     private IEnumerator ImpactFrames() {
@@ -60,6 +66,19 @@ public class ScreenEffectManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(impactFramesLength);
 
         Time.timeScale = priorTimeScale;
+        InputManager.Instance.LockedInput = false;
+    }
+
+    private IEnumerator BlackCanvasImpactFrames() {
+        InputManager.Instance.LockedInput = true;
+        float priorTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        blackScreenCanvas.enabled = true;
+
+        yield return new WaitForSecondsRealtime(blackCanvasImpactFramesLength);
+
+        Time.timeScale = priorTimeScale;
+        blackScreenCanvas.enabled = false;
         InputManager.Instance.LockedInput = false;
     }
     public void Shake(float duration, float strength)

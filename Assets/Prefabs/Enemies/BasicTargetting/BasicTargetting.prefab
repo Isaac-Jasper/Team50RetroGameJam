@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairPrefab: {fileID: 4689032966538438663, guid: ce354bdf38cfec542bd60df41f1dcfa1, type: 3}
   spriteObject: {fileID: 6873077352996846449}
+  deathAnimationObject: {fileID: 3411286863478415138, guid: a7c46119657f88142b9c640270a428d8, type: 3}
   health: 2
   enemyMoveSpeed: 7
   aimRate: 5

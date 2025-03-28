@@ -30,7 +30,6 @@ public class DistanceEnemy : Enemy
 
     protected override void OnDeath() {
         //add death logic
-        //play death animation here
         base.OnDeath();
     }
 
