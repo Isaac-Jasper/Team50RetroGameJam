@@ -39,7 +39,7 @@ public class RoundManager : MonoBehaviour
             round++;
             Debug.Log("Starting Round " + round);
             
-            if (round > 1 && UpgradeManager.Instance != null)
+            if (round == 4 || round == 8 && UpgradeManager.Instance != null)
             {
                 UpgradeManager.Instance.ShowUpgradeSelection();
             }
