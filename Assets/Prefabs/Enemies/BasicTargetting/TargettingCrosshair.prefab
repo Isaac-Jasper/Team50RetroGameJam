@@ -112,12 +112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtbox: {fileID: 8421533274363456070}
-  crosshairMoveSpeed: 1
+  crosshairMoveSpeed: 1.5
   damage: 1
-  fireRate: 4
-  hurtboxDuration: 0.1
+  fireRate: 0
+  hurtboxDuration: 4
   rb: {fileID: 4400788772476606414}
-  pauseTimeUntilFire: 0.2
+  pauseTimeUntilFire: 0
   pauseTimeAfterFire: 0.2
 --- !u!1 &8421533274363456070
 GameObject:

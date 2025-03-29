@@ -75,15 +75,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c75e5dc9f6aa14d847b0e8c7591ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3379317251290114729}
   crosshairPrefab: {fileID: 4689032966538438663, guid: ce354bdf38cfec542bd60df41f1dcfa1, type: 3}
   spriteObject: {fileID: 6873077352996846449}
   deathAnimationObject: {fileID: 3411286863478415138, guid: a7c46119657f88142b9c640270a428d8, type: 3}
   health: 2
   enemyMoveSpeed: 7
-  aimRate: 5
+  aimRate: 2
   damageOnCollision: 1
   scoreValue: 10
-  rb: {fileID: 3379317251290114729}
   aimPauseTimeUntilAim: 0.5
   aimPauseTimeAfterAim: 0
   angleRange: 0.055
