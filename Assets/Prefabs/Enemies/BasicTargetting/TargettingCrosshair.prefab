@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4400788772476606414}
   - component: {fileID: 7930180498790199023}
   - component: {fileID: 5475970596535096120}
+  - component: {fileID: 59214050361522356}
   m_Layer: 7
   m_Name: TargettingCrosshair
   m_TagString: Crosshair
@@ -32,7 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 781824631714057660}
   - {fileID: 7151832789230311807}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,61 +111,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86442e67c90fa040bd371854bb1fd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurtbox: {fileID: 8421533274363456070}
-  crosshairMoveSpeed: 1.5
+  hurtboxSizeReference: {fileID: 59214050361522356}
   damage: 1
-  fireRate: 0
-  hurtboxDuration: 4
+  crosshairMoveSpeed: 1.5
+  lifeTime: 5
   rb: {fileID: 4400788772476606414}
-  pauseTimeUntilFire: 0
-  pauseTimeAfterFire: 0.2
---- !u!1 &8421533274363456070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 781824631714057660}
-  - component: {fileID: 3997332854390292350}
-  - component: {fileID: 2610707923107904080}
-  m_Layer: 0
-  m_Name: Hurtbox
-  m_TagString: Crosshair
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &781824631714057660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8421533274363456070}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3030519223727562171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3997332854390292350
+--- !u!58 &59214050361522356
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8421533274363456070}
+  m_GameObject: {fileID: 4689032966538438663}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -188,18 +152,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.3
---- !u!114 &2610707923107904080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8421533274363456070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4c1e9fd453520b4e84455a5f309d714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8600180193341566052
 GameObject:
   m_ObjectHideFlags: 0

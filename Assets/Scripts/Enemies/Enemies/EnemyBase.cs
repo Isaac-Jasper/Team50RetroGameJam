@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField]
     protected Rigidbody2D rb;
@@ -70,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
             GameObject newCrosshair = Instantiate(crosshairPrefab, transform.position, Quaternion.identity);
             
             // Pass any necessary data to the crosshair
-            EnemyCrosshair crosshairComponent = newCrosshair.GetComponent<EnemyCrosshair>();
+            EnemyCrosshairBase crosshairComponent = newCrosshair.GetComponent<EnemyCrosshairBase>();
             if (crosshairComponent != null)
             {
                 crosshairComponent.sourceEnemy = this;

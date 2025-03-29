@@ -1,9 +1,11 @@
 using System.Collections;
-using Unity.Collections;
 using UnityEngine;
 
-public class InnocentDuck : Enemy
+public class BouncingEnemy : EnemyBase
 {
+    [SerializeField]
+    private float aimPauseTimeUntilAim, aimPauseTimeAfterAim;
+
     [Header("% of circle path can deviate")]
     [Range(0.0f, 0.25f)]
     [SerializeField]
@@ -21,12 +23,11 @@ public class InnocentDuck : Enemy
             spriteObject.transform.rotation = Quaternion.Euler(0,0,0);
         }
     }
-    protected override IEnumerator OnAim() {
-        //no aim
-        yield return null;
-    }
 
     protected override void OnDeath() {
+        //add death logic
+        //play death animation here
+        
         base.OnDeath();
     }
 
@@ -34,9 +35,31 @@ public class InnocentDuck : Enemy
         rb.linearVelocity = moveDirection.normalized*enemyMoveSpeed;
     }
 
+    protected override IEnumerator OnAim() {
+        Vector2 temp = moveDirection;
+        moveDirection = Vector2.zero;
+        OnMove();
+        yield return new WaitForSeconds(aimPauseTimeUntilAim);
+    
+        //aiming animation here
+        GameObject spawnedCrosshair = SpawnCrosshair();  // Use our new method instead of Instantiate
+    
+        yield return new WaitForSeconds(aimPauseTimeAfterAim);
+        moveDirection = temp;
+        OnMove();
+    }
+
+    private IEnumerator AimTimer() {
+        while (true) {
+            yield return new WaitForSeconds(aimRate+ aimPauseTimeUntilAim + aimPauseTimeAfterAim);
+            StartCoroutine(OnAim());
+        }
+    }
+
     protected override void OnSpawn() {
         //spawn on right or left side and fly toward middle
         moveDirection = Vector2.left*transform.position.x;
+        StartCoroutine(AimTimer());
         OnMove();
     }
 

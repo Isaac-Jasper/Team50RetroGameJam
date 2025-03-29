@@ -1,67 +1,52 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
-public class BasicEnemy : Enemy
+public class BouncingCrosshair : EnemyCrosshairBase
 {
     [SerializeField]
-    private float aimPauseTimeUntilAim, aimPauseTimeAfterAim;
+    private Rigidbody2D rb;
+
+
 
     [Header("% of circle path can deviate")]
     [Range(0.0f, 0.25f)]
     [SerializeField]
     private float angleRange; //deviates on both sides of path, for a total of 50% circle coverage
+
     private Vector3 moveDirection; //direction duck is currently moving
     private Vector2 nonZeroVelocity; //velocity of duck right before colliding with wall
 
+    protected void Start() {
+        OnSpawn();
+    }
     void Update() {
         if (rb.linearVelocity.magnitude > 0) {
             nonZeroVelocity = rb.linearVelocity;
         }
-        if (rb.linearVelocity.x > 0) {
-            spriteObject.transform.rotation = Quaternion.Euler(0,180,0);
-        } else if (rb.linearVelocity.x < 0) {
-            spriteObject.transform.rotation = Quaternion.Euler(0,0,0);
-        }
-    }
-
-    protected override void OnDeath() {
-        //add death logic
-        //play death animation here
-        
-        base.OnDeath();
     }
 
     protected override void OnMove() {
-        rb.linearVelocity = moveDirection.normalized*enemyMoveSpeed;
+        rb.linearVelocity = moveDirection.normalized*crosshairMoveSpeed;
     }
 
-    protected override IEnumerator OnAim() {
-        Vector2 temp = moveDirection;
+    protected override void OnFire() {
         moveDirection = Vector2.zero;
         OnMove();
-        yield return new WaitForSeconds(aimPauseTimeUntilAim);
-    
-        //aiming animation here
-        GameObject spawnedCrosshair = SpawnCrosshair();  // Use our new method instead of Instantiate
-    
-        yield return new WaitForSeconds(aimPauseTimeAfterAim);
-        moveDirection = temp;
-        OnMove();
-    }
 
-    private IEnumerator AimTimer() {
-        while (true) {
-            yield return new WaitForSeconds(aimRate+ aimPauseTimeUntilAim + aimPauseTimeAfterAim);
-            StartCoroutine(OnAim());
+        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, hurtboxSizeReference.radius, LayerMask.GetMask("Player"));
+        //play damage animation
+        if (hitPlayer != null) {
+            PlayerController player = hitPlayer.GetComponent<PlayerController>();
+            player.TakeDamage(damage);
         }
+        //Debug.Log("Fired");
+        OnDeath();
     }
 
     protected override void OnSpawn() {
-        //spawn on right or left side and fly toward middle
-        moveDirection = Vector2.left*transform.position.x;
-        StartCoroutine(AimTimer());
+        float rand = Random.Range(0, 2 * Mathf.PI);
+        moveDirection = new Vector2(Mathf.Cos(rand), Mathf.Sin(rand));
+        StartCoroutine(LifeTimer());
         OnMove();
     }
 

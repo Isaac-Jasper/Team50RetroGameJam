@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 
-public class DistanceEnemy : Enemy
+public class DistanceEnemy : EnemyBase
 {
     [SerializeField]
     private float aimPauseTimeUntilAim, aimPauseTimeAfterAim;

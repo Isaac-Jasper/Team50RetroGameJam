@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     
     foreach (Collider2D enemyCollider in hitEnemies)
     {
-        Enemy enemy = enemyCollider.GetComponent<Enemy>();
+        EnemyBase enemy = enemyCollider.GetComponent<EnemyBase>();
         if (enemy != null)
         {
             // Apply damage to the enemy; apply critical hits if enabled
