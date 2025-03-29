@@ -24,13 +24,13 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField]
     protected int scoreValue = 10;
 
-    private readonly float FLY_UP_SPEED_MULT = 2;
+    private readonly float FLY_UP_SPEED_MULT = 8;
 
     protected bool doMove = false;
 
     protected virtual void Start() {
         doMove = true;
-        if (transform.position.y <= -4) {
+        if (transform.position.y <= -3) {
             StartCoroutine(FlyUpStart());
         } else {
             OnSpawn();
@@ -44,17 +44,13 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected IEnumerator FlyUpStart() {
         doMove = false;
-        //float randDirection = Random.Range(-15,15);
+        float randDir = Random.Range(-1f,1f);
         float randHeight = Random.Range(-2,3.5f);
-        float startPos = transform.position.y;
-        float timef = (2*randHeight/enemyMoveSpeed-2*startPos)/(FLY_UP_SPEED_MULT+1);
-        float startTime = Time.time;
         while (transform.position.y < randHeight) {
-            float time =  Time.time - startTime;
-            float mult = FLY_UP_SPEED_MULT*(1-time/timef)+time/timef;
-            rb.linearVelocity = enemyMoveSpeed * Mathf.Max(1,mult) * Vector2.up;
+            rb.linearVelocity = FLY_UP_SPEED_MULT * Vector2.up + randDir*FLY_UP_SPEED_MULT * Vector2.right;
             yield return null;
         }
+
         OnSpawn();
     }
     
