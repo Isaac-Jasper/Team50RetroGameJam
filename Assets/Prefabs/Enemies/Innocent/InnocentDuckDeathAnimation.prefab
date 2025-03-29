@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 975997410366667584}
   - component: {fileID: 6458910112936040287}
   m_Layer: 0
-  m_Name: Duck1DeathAnimation
+  m_Name: InnocentDuckDeathAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3411286863478415138}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7ff417e83151a774aad140aabede13a3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 99966e99cd2129b4a9314749fa127ee8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

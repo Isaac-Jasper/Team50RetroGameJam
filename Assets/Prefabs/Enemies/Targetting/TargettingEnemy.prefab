@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 875764287053600124}
   - component: {fileID: 5452373410491570370}
   m_Layer: 6
-  m_Name: BasicTargetting
+  m_Name: TargettingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

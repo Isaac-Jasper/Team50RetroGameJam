@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 975997410366667584}
   - component: {fileID: 6458910112936040287}
   m_Layer: 0
-  m_Name: Duck2DeathAnimation
+  m_Name: TargettingDeathAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

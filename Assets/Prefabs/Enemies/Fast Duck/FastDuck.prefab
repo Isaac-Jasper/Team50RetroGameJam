@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8623752426311657391, guid: c06a75964e3c3324aa1a0c33f3bf8ce9, type: 3}
+  m_Sprite: {fileID: 2382554546271961252, guid: df58c21c095b53a4984703db46e349cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1558397395459748216}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1760550e3ed87a4c89cf1fb1a654946, type: 2}
+  m_Controller: {fileID: 9100000, guid: edcaf3d0681ec3047a13230b4ac70015, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db82344dcb69bf43a534036827049c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6057096837242971595}
   crosshairPrefab: {fileID: 0}
   spriteObject: {fileID: 1558397395459748216}
   deathAnimationObject: {fileID: 3411286863478415138, guid: b8324399753126d4db4b4d48cf4dd597, type: 3}
@@ -166,7 +167,6 @@ MonoBehaviour:
   aimRate: 0
   damageOnCollision: 1
   scoreValue: 10
-  rb: {fileID: 6057096837242971595}
   angleRange: 0.106
 --- !u!50 &6057096837242971595
 Rigidbody2D:

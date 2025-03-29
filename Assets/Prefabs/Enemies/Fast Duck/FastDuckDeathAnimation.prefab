@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 975997410366667584}
   - component: {fileID: 6458910112936040287}
   m_Layer: 0
-  m_Name: Duck2DeathAnimation
+  m_Name: FastDuckDeathAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 3411286863478415138}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c3518d605d7f9d4d9a423d70320f2a7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 99966e99cd2129b4a9314749fa127ee8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 223185426903044165}
   - component: {fileID: 2477322071912400162}
   m_Layer: 7
-  m_Name: BasicCrosshair
+  m_Name: BouncingCrosshair
   m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

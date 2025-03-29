@@ -348,6 +348,8 @@ Transform:
   - {fileID: 1944241268}
   - {fileID: 699515996}
   - {fileID: 1523454284}
+  - {fileID: 656251065}
+  - {fileID: 787230976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216266644
@@ -392,7 +394,7 @@ GameObject:
   - component: {fileID: 238606952}
   - component: {fileID: 238606953}
   m_Layer: 0
-  m_Name: Round1
+  m_Name: BouncingRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,6 +1125,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656073961}
   m_CullTransparentMesh: 1
+--- !u!1 &656251064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656251065}
+  - component: {fileID: 656251066}
+  m_Layer: 0
+  m_Name: FastRound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &656251065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656251064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188138495}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656251066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656251064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f378f8882175dee429887a8576b97a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesPerRound: 4
+  enemiesPerBurst: 2
+  timeBetweenEnemies: 2
+  enemies:
+  - {fileID: 4273910732800057743, guid: 5da0cd9453e70c54f85cb2dc7dc9b536, type: 3}
+  - {fileID: 4273910732800057743, guid: 5da0cd9453e70c54f85cb2dc7dc9b536, type: 3}
+  - {fileID: 4273910732800057743, guid: 5da0cd9453e70c54f85cb2dc7dc9b536, type: 3}
+  - {fileID: 4273910732800057743, guid: 5da0cd9453e70c54f85cb2dc7dc9b536, type: 3}
+  spawnLocations:
+  - {fileID: 173140830}
+  - {fileID: 861528016}
+  - {fileID: 304677892}
+  - {fileID: 1345224113}
 --- !u!1001 &687601463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1270,7 +1329,7 @@ GameObject:
   - component: {fileID: 699515996}
   - component: {fileID: 699515995}
   m_Layer: 0
-  m_Name: Round3
+  m_Name: BombRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1351,6 +1410,63 @@ Transform:
   - {fileID: 1345224113}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &787230975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787230976}
+  - component: {fileID: 787230977}
+  m_Layer: 0
+  m_Name: InnocentRound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787230976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787230975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188138495}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787230977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787230975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f378f8882175dee429887a8576b97a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesPerRound: 4
+  enemiesPerBurst: 2
+  timeBetweenEnemies: 2
+  enemies:
+  - {fileID: 4273910732800057743, guid: 127f12d8d887aa74ba1d71b5a095766f, type: 3}
+  - {fileID: 4273910732800057743, guid: 127f12d8d887aa74ba1d71b5a095766f, type: 3}
+  - {fileID: 4273910732800057743, guid: 127f12d8d887aa74ba1d71b5a095766f, type: 3}
+  - {fileID: 4273910732800057743, guid: 127f12d8d887aa74ba1d71b5a095766f, type: 3}
+  spawnLocations:
+  - {fileID: 173140830}
+  - {fileID: 861528016}
+  - {fileID: 304677892}
+  - {fileID: 1345224113}
 --- !u!1 &861528015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,6 +2010,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds:
+  - {fileID: 656251066}
+  - {fileID: 787230977}
   - {fileID: 238606953}
   - {fileID: 1944241269}
   - {fileID: 699515995}
@@ -2212,7 +2330,7 @@ GameObject:
   - component: {fileID: 1523454284}
   - component: {fileID: 1523454285}
   m_Layer: 0
-  m_Name: Round4
+  m_Name: DistanceRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2952,7 +3070,7 @@ GameObject:
   - component: {fileID: 1944241268}
   - component: {fileID: 1944241269}
   m_Layer: 0
-  m_Name: Round2
+  m_Name: TargettingRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
