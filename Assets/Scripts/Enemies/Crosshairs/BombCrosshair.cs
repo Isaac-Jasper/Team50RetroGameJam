@@ -1,30 +1,19 @@
-using System.Collections;
 using UnityEngine;
 
-public class TargettingCrosshair : EnemyCrosshairBase
+public class BombCrosshair : EnemyCrosshairBase
 {
     [SerializeField]
     private Rigidbody2D rb;
 
-    private bool doMove = true;
-    private Transform playerTransform; 
-
     protected void Start() {
         OnSpawn();
     }
-    void Update() {
-        if (doMove) {
-            OnMove();
-        }
-    }
 
     protected override void OnMove() {
-        transform.position = Vector2.Lerp(transform.position, playerTransform.position, Time.deltaTime * crosshairMoveSpeed); //position shouldnt be an issue here since this shouldnt every use physics to collide wit hanything
+        //no movement
     }
 
     protected override void OnFire() {
-        doMove = false;
-
         Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, hurtboxSizeReference.radius, LayerMask.GetMask("Player"));
         //play damage animation
         if (hitPlayer != null) {
@@ -37,7 +26,5 @@ public class TargettingCrosshair : EnemyCrosshairBase
 
     protected override void OnSpawn() {
         StartCoroutine(LifeTimer());
-        playerTransform = GameObject.FindWithTag("Player").transform;
-        doMove = true;
     }
 }

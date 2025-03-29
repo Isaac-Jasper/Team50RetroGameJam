@@ -1,14 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class BasicEnemyCrosshair : EnemyCrosshair
+public class InnocentDuck : EnemyBase
 {
-    [SerializeField]
-    private Rigidbody2D rb;
-
-    [SerializeField]
-    private float pauseTimeUntilFire, pauseTimeAfterFire;
-
     [Header("% of circle path can deviate")]
     [Range(0.0f, 0.25f)]
     [SerializeField]
@@ -16,43 +10,32 @@ public class BasicEnemyCrosshair : EnemyCrosshair
     private Vector3 moveDirection; //direction duck is currently moving
     private Vector2 nonZeroVelocity; //velocity of duck right before colliding with wall
 
-    protected void Start() {
-        OnSpawn();
-    }
     void Update() {
         if (rb.linearVelocity.magnitude > 0) {
             nonZeroVelocity = rb.linearVelocity;
         }
+        if (rb.linearVelocity.x > 0) {
+            spriteObject.transform.rotation = Quaternion.Euler(0,180,0);
+        } else if (rb.linearVelocity.x < 0) {
+            spriteObject.transform.rotation = Quaternion.Euler(0,0,0);
+        }
+    }
+    protected override IEnumerator OnAim() {
+        //no aim
+        yield return null;
+    }
+
+    protected override void OnDeath() {
+        base.OnDeath();
     }
 
     protected override void OnMove() {
-        rb.linearVelocity = moveDirection.normalized*crosshairMoveSpeed;
-    }
-
-    protected override IEnumerator OnFire() {
-        moveDirection = Vector2.zero;
-        OnMove();
-        yield return new WaitForSeconds(pauseTimeUntilFire);
-        hurtbox.SetActive(true);
-        yield return new WaitForSeconds(hurtboxDuration);
-        hurtbox.SetActive(false);
-        //play damage animation
-        //Debug.Log("Fired");
-        yield return new WaitForSeconds(pauseTimeAfterFire);
-        OnDeath();
-    }
-
-    protected override IEnumerator FireTimer() {
-        while (true) {
-            yield return new WaitForSeconds(fireRate);
-            StartCoroutine(OnFire());
-        }
+        rb.linearVelocity = moveDirection.normalized*enemyMoveSpeed;
     }
 
     protected override void OnSpawn() {
-        float rand = Random.Range(0, 2 * Mathf.PI);
-        moveDirection = new Vector2(Mathf.Cos(rand), Mathf.Sin(rand));
-        StartCoroutine(FireTimer());
+        //spawn on right or left side and fly toward middle
+        moveDirection = Vector2.left*transform.position.x;
         OnMove();
     }
 

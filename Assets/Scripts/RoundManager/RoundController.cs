@@ -9,7 +9,7 @@ public class RoundController : MonoBehaviour
     [SerializeField] private int enemiesPerRound;
     [SerializeField] private int enemiesPerBurst;
     [SerializeField] private float timeBetweenEnemies;
-    [SerializeField] private Enemy[] enemies;
+    [SerializeField] private EnemyBase[] enemies;
     [SerializeField] private Transform[] spawnLocations;
 
     private RoundManager roundManager;
@@ -23,7 +23,7 @@ public class RoundController : MonoBehaviour
     {
         for(int i = 0; i < enemies.Length; i++)
         {
-            Enemy temp = enemies[i];
+            EnemyBase temp = enemies[i];
             int r = Random.Range(i, enemies.Length);
             enemies[i] = enemies[r];
             enemies[r] = temp;
@@ -46,9 +46,9 @@ public class RoundController : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(Enemy enemy, Vector2 position)
+    private void SpawnEnemy(EnemyBase enemy, Vector2 position)
     {
-        Enemy spawnedEnemy = Instantiate(enemy, position, enemy.transform.rotation);
+        EnemyBase spawnedEnemy = Instantiate(enemy, position, enemy.transform.rotation);
         enemiesSpawned++;
         enemiesAlive++;
 
