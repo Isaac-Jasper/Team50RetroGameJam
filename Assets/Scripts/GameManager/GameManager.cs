@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(true);
             
             if (finalScoreText != null)
-                finalScoreText.SetText("Final Score: " + currentScore);
+                finalScoreText.SetText("FINAL SCORE: " + currentScore);
         }
     }
     
