@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoundManager : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class RoundManager : MonoBehaviour
     private int round;
     private int totalRounds;
     [SerializeField] private RoundController[] rounds;
+    [SerializeField] private GameObject roundCounterPanel;
+    [SerializeField] private TextMeshProUGUI roundText;
+    [SerializeField] private float timeBetweenRounds;
 
     void Start()
     {
@@ -31,21 +36,51 @@ public class RoundManager : MonoBehaviour
     {   
         if(round >= totalRounds)
         {
-            Debug.Log("All rounds completed!");
+            StartCoroutine(endGame());
             return;
         }
         else
         {
             round++;
+
             Debug.Log("Starting Round " + round);
-            
-            if (round == 4 || round == 8 && UpgradeManager.Instance != null)
-            {
-                UpgradeManager.Instance.ShowUpgradeSelection();
-            }
-            
-            rounds[round - 1].StartRound();
+
+            StartCoroutine(showRoundCounter());
         }
+    }
+
+    private IEnumerator showRoundCounter()
+    {
+        
+
+        //if (round == 4 || round == 8 && UpgradeManager.Instance != null)
+        if (round != 1 && UpgradeManager.Instance != null)
+        {
+            yield return new WaitForSeconds(timeBetweenRounds);
+            UpgradeManager.Instance.ShowUpgradeSelection();
+        }
+            
+
+        yield return new WaitForSeconds(timeBetweenRounds/2);
+
+        roundText.SetText("ROUND " + round);
+        roundCounterPanel.SetActive(true);
+        yield return new WaitForSeconds(timeBetweenRounds);
+        roundCounterPanel.SetActive(false);
+
+        yield return new WaitForSeconds(timeBetweenRounds/2);
+
+        rounds[round - 1].StartRound();
+    }
+
+    private IEnumerator endGame()
+    {
+        Time.timeScale = 0;
+        roundText.SetText("FINAL ROUND COMPLETE!");
+        roundCounterPanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(timeBetweenRounds);
+        roundCounterPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 }
 

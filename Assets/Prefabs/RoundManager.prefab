@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds: []
+  roundCounterPanel: {fileID: 0}
+  roundText: {fileID: 0}
+  timeBetweenRounds: 3
