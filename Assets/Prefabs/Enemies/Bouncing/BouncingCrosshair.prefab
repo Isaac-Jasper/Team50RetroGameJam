@@ -116,6 +116,8 @@ MonoBehaviour:
   damage: 1
   crosshairMoveSpeed: 8
   lifeTime: 4
+  playerCollisionCollider: {fileID: 2477322071912400162}
+  sr: {fileID: 4147001809327901616}
   rb: {fileID: 8732174585770467874}
   angleRange: 0.136
 --- !u!58 &2477322071912400162

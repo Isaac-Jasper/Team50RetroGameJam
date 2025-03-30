@@ -13,11 +13,25 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
     public int damage;
     public float crosshairMoveSpeed, lifeTime; 
     
+    [Header("Safe Frame Settings")]
+    [SerializeField]
+    Collider2D playerCollisionCollider;
+    [SerializeField]
+    SpriteRenderer sr;
+    private readonly float SAFE_TIMER = 0.5f, ALPHA_LEVEL = 0.5f;
     protected bool isFiring = false;  // Track if the crosshair is in firing state
 
     abstract protected void OnFire();
     abstract protected void OnMove();
     abstract protected void OnSpawn();
+    virtual protected IEnumerator SafeFrames() {
+        Color startColor = sr.color;
+        sr.color = new Color(startColor.r,startColor.g,startColor.b,ALPHA_LEVEL);
+        playerCollisionCollider.enabled = false;
+        yield return new WaitForSeconds(SAFE_TIMER);
+        sr.color = startColor;
+        playerCollisionCollider.enabled = true;
+    }
     protected virtual IEnumerator LifeTimer() {
         while (true) {
             yield return new WaitForSeconds(lifeTime);

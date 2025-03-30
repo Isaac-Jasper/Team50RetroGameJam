@@ -25,6 +25,7 @@ public class BombCrosshair : EnemyCrosshairBase
     }
 
     protected override void OnSpawn() {
+        StartCoroutine(SafeFrames());
         StartCoroutine(LifeTimer());
     }
 }
