@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         }
         
         // Initialize player state
-        currentLives = maxLives;
+        currentLives = 3;
         isDead = false;
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
@@ -199,7 +199,6 @@ public class PlayerController : MonoBehaviour
     {
         currentLives++;
         GameManager.Instance.UpdateLivesDisplay(currentLives);
-        Debug.Log("Extra life added! Current lives: " + currentLives);
     }
 
     private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
