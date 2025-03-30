@@ -114,7 +114,7 @@ MonoBehaviour:
   hurtboxSizeReference: {fileID: 59214050361522356}
   damage: 1
   crosshairMoveSpeed: 1.5
-  lifeTime: 5
+  lifeTime: 4
   rb: {fileID: 4400788772476606414}
 --- !u!58 &59214050361522356
 CircleCollider2D:

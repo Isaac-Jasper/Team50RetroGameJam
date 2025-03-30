@@ -195,7 +195,7 @@ MonoBehaviour:
   damageOnCollision: 1
   scoreValue: 10
   aimPauseTimeUntilAim: 0.1
-  aimPauseTimeAfterAim: 1
+  aimPauseTimeAfterAim: 4
   angleRange: 0.055
 --- !u!70 &2633425942521075377
 CapsuleCollider2D:
