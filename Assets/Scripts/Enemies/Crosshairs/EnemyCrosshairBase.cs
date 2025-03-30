@@ -15,10 +15,10 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
     
     [Header("Safe Frame Settings")]
     [SerializeField]
-    Collider2D playerCollisionCollider;
+    protected Collider2D playerCollisionCollider;
     [SerializeField]
-    SpriteRenderer sr;
-    private readonly float SAFE_TIMER = 0.5f, ALPHA_LEVEL = 0.5f;
+    protected SpriteRenderer sr;
+    protected readonly float SAFE_TIMER = 0.5f, ALPHA_LEVEL = 0.5f;
     protected bool isFiring = false;  // Track if the crosshair is in firing state
 
     abstract protected void OnFire();

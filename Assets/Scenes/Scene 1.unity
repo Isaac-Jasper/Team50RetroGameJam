@@ -1672,6 +1672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1687593718}
   - {fileID: 149257161}
   - {fileID: 347164044}
   - {fileID: 416209838}
@@ -1680,6 +1681,63 @@ Transform:
   - {fileID: 297897932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1687593717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687593718}
+  - component: {fileID: 1687593719}
+  m_Layer: 0
+  m_Name: BasicRound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687593718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687593717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1596853538}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687593719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687593717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f378f8882175dee429887a8576b97a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesPerRound: 4
+  enemiesPerBurst: 2
+  timeBetweenEnemies: 2
+  enemies:
+  - {fileID: 437346723451940552, guid: 4f5c4edd129d70b4ba268a2486404549, type: 3}
+  - {fileID: 437346723451940552, guid: 4f5c4edd129d70b4ba268a2486404549, type: 3}
+  - {fileID: 437346723451940552, guid: 4f5c4edd129d70b4ba268a2486404549, type: 3}
+  - {fileID: 437346723451940552, guid: 4f5c4edd129d70b4ba268a2486404549, type: 3}
+  spawnLocations:
+  - {fileID: 83967562}
+  - {fileID: 413353282}
+  - {fileID: 927662477}
+  - {fileID: 28194375}
 --- !u!1 &1767108636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,11 +1907,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161915130110954881, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3161915130110954881, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3161915130110954881, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2202,6 +2260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds:
+  - {fileID: 1687593719}
   - {fileID: 297897933}
   - {fileID: 297897933}
   - {fileID: 149257162}
