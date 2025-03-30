@@ -50,7 +50,7 @@ public class BouncingEnemy : EnemyBase
     }
 
     private IEnumerator AimTimer() {
-        float rand = Random.Range(0, aimRate/5);
+        float rand = Random.Range(0, aimRate/3);
         yield return new WaitForSeconds(aimRate + rand);
         StartCoroutine(OnAim());
         while (true) {
