@@ -135,15 +135,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  damage: 1
+  criticalMultiplier: 2
+  hurtboxRadius: 1
   shootCooldown: 0.5
   maxLives: 3
   invincibilityDuration: 1.5
   hitEffectPrefab: {fileID: 0}
-  flareEffect: {fileID: 1284332757471003310, guid: 4a18b7096d30fba439ddb9abf6419d84, type: 3}
+  flareEffect: {fileID: 1804518805759055470, guid: a3b8fafe36fdde94881919f6e4fbf3fe, type: 3}
   hitEffectDuration: 0.5
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
-  dashDistance: 3
   dashCooldown: 2
   dashDuration: 0.2
   dashEffectPrefab: {fileID: 0}

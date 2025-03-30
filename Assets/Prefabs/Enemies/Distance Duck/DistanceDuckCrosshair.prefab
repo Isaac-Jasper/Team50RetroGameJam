@@ -199,9 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxSizeReference: {fileID: 1770280225624937098}
+  onFireFlareEffect: {fileID: 2321646567528688883, guid: b96a3a0d0636da34591afce2a866d87a, type: 3}
   damage: 1
   crosshairMoveSpeed: 8
   lifeTime: 5
+  playerCollisionCollider: {fileID: 1770280225624937098}
+  sr: {fileID: 4959106955552276298}
   rb: {fileID: 2618970126012411059}
   angleRange: 0.136
 --- !u!58 &1770280225624937098

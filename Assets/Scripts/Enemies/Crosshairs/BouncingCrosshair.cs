@@ -44,6 +44,7 @@ public class BouncingCrosshair : EnemyCrosshairBase
     }
 
     protected override void OnSpawn() {
+        StartCoroutine(SafeFrames());
         float rand = Random.Range(0, 2 * Mathf.PI);
         moveDirection = new Vector2(Mathf.Cos(rand), Mathf.Sin(rand));
         StartCoroutine(LifeTimer());
