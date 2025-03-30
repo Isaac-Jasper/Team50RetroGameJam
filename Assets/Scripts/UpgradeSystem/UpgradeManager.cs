@@ -68,57 +68,50 @@ public class UpgradeManager : MonoBehaviour
     private void InitializeUpgrades()
     {
         // Initialize all upgrades with their effects
-        allUpgrades.Add(new Upgrade("Increase Fire Rate", 
-            "Increases fire rate by 20%", 
+        allUpgrades.Add(new Upgrade("INCREASE FIRE RATE", 
+            "INCREASES FIRE RATE BY 20%", 
             upgradeIcons[0], 
             () => {
                 player.shootCooldown *= 0.8f;
             }));
 
-        allUpgrades.Add(new Upgrade("Decrease Crosshair Size", 
-            "Makes your crosshair 20% smaller", 
+        allUpgrades.Add(new Upgrade("DECREASE CROSSHAIR SIZE", 
+            "MAKES CROSSHAIR 20% SMALLER", 
             upgradeIcons[1], 
             () => {
                 player.getSmaller();
             }));
 
-        allUpgrades.Add(new Upgrade("Extra Life", 
-            "Gain an additional life", 
+        allUpgrades.Add(new Upgrade("EXTRA LIFE", 
+            "GAIN AN ADDITIONAL LIFE", 
             upgradeIcons[2], 
             () => {
                 player.AddLife();
             }));
 
-        allUpgrades.Add(new Upgrade("Increase Movement Speed", 
-            "Increases movement speed by 15%", 
+        allUpgrades.Add(new Upgrade("INCREASE MOVEMENT SPEED", 
+            "INCREASES MOVEMENT SPEED BY 15%", 
             upgradeIcons[3], 
             () => {
                 player.moveSpeed *= 1.15f;
             }));
 
-        allUpgrades.Add(new Upgrade("Decrease Reload Time", 
-            "Decreases reload time by 20%", 
-            upgradeIcons[4], 
-            () => {
-                player.shootCooldown *= 0.8f;
-            }));
-
-        allUpgrades.Add(new Upgrade("Dash Ability", 
-            "Press Shift to dash in movement direction", 
+        allUpgrades.Add(new Upgrade("DASH ABILITY", 
+            "PRESS SHIFT TO DASH IN THE DIRECTION YOU'RE MOVING", 
             upgradeIcons[5], 
             () => {
                 player.UnlockDash();
             }));
 
-        allUpgrades.Add(new Upgrade("Life Steal", 
-            "10% chance to gain health on enemy kill", 
+        allUpgrades.Add(new Upgrade("LIFE STEAL", 
+            "10% CHANCE TO REGAIN A LIFE ON KILL", 
             upgradeIcons[6], 
             () => {
                 GlobalUpgradeSettings.lifeStealChance = 0.1f;
             }));
 
-        allUpgrades.Add(new Upgrade("Critical Hits", 
-            "20% chance to deal double damage", 
+        allUpgrades.Add(new Upgrade("CRITICAL HITS", 
+            "20% CHANCE TO DEAL DOUBLE DAMAGE", 
             upgradeIcons[7], 
             () => {
                 GlobalUpgradeSettings.criticalHitChance = 0.2f;
