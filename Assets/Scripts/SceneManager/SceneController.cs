@@ -14,13 +14,14 @@ public class SceneController : MonoBehaviour
     private float sceneStartTransitionDelay;
 
     [SerializeField]
+    private CanvasGroup fadeGroupPrefab;
     private CanvasGroup fadeGroup;
-    [SerializeField]
-    private GameObject fadeObject;
+
 
     private void Awake() {
         if (Instance != null && Instance != this && Instance.enabled) {
             Destroy(gameObject);
+            return;
         } else {
             Instance = this;
         }
@@ -41,13 +42,17 @@ public class SceneController : MonoBehaviour
             SceneManager.LoadScene(1);
             return;
         }
-
+        Debug.Log("SceneLoaded");
         initializeObjects();
         StartCoroutine(StartScene());
     }
 
     private void initializeObjects() {
         //initialize any on scene start objects here
+        if (fadeGroup == null)
+        {
+            fadeGroup = Instantiate(fadeGroupPrefab);
+        }
     }
 
     public void InitiateSceneChange(int scene)

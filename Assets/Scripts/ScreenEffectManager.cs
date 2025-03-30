@@ -27,7 +27,6 @@ public class ScreenEffectManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {

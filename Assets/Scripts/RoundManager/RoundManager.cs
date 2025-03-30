@@ -29,7 +29,6 @@ public class RoundManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void nextRound()

@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private Button restartButton;
-    
+
+    [Header("Start Menu UI")]
+    [SerializeField] private Button startButton;
+
     [Header("Game Settings")]
     [SerializeField] private float gameOverDelay = 2f;
     [SerializeField] private bool autoRestart = false;
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         
         // Initialize UI
         if (gameOverPanel != null)
@@ -41,6 +43,9 @@ public class GameManager : MonoBehaviour
         // Setup button listener
         if (restartButton != null)
             restartButton.onClick.AddListener(RestartGame);
+
+        if (startButton != null)
+            startButton.onClick.AddListener(StartGame);
     }
 
     void Start()
@@ -85,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOverPanel != null)
         {
+            Time.timeScale = 0;
             gameOverPanel.SetActive(true);
             
             if (finalScoreText != null)
@@ -92,16 +98,23 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void RestartGame()
+    private void RestartGame()
     {
+        Time.timeScale = 1;
         isGameOver = false;
         currentScore = 0;
         
         // Hide game over UI - ensure this runs before scene change
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
-        
+
         // Reload the current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        InputManager.Instance.OnRestart?.Invoke();
     }
+
+    private void StartGame()
+    {
+        SceneController.Instance.InitiateSceneChange(2);
+    }
+
 }
