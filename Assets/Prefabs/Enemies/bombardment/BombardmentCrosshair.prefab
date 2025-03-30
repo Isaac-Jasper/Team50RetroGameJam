@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxSizeReference: {fileID: 6490354721274685463}
+  onFireFlareEffect: {fileID: 3734672993219496764, guid: 7ed87f3b9c403cf4a9825953b69b6265, type: 3}
   damage: 1
   crosshairMoveSpeed: 0
   lifeTime: 2
