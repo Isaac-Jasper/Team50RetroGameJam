@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void UpdateLivesDisplay(int lives)
     {
         if (livesText != null)
-            livesText.SetText("Lives: " + lives);
+            livesText.SetText("LIVES: " + lives);
     }
     
     public void AddScore(int points)
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     private void UpdateScore(int score)
     {
         if (scoreText != null)
-            scoreText.SetText("Score: " + score);
+            scoreText.SetText("SCORE: " + score);
     }
     
     public void GameOver()
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(true);
             
             if (finalScoreText != null)
-                finalScoreText.SetText("Final Score: " + currentScore);
+                finalScoreText.SetText("FINAL SCORE: " + currentScore);
         }
     }
     
