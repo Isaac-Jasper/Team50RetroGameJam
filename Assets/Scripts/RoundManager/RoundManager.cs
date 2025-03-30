@@ -51,10 +51,7 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator showRoundCounter()
     {
-        
-
-        //if (round == 4 || round == 8 && UpgradeManager.Instance != null)
-        if (round != 1 && UpgradeManager.Instance != null)
+        if (round == 4 || round == 8 && UpgradeManager.Instance != null)
         {
             yield return new WaitForSeconds(timeBetweenRounds);
             UpgradeManager.Instance.ShowUpgradeSelection();
