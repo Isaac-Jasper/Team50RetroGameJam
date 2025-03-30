@@ -8,6 +8,8 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
     [Header("Purely a size reference")]
     [SerializeField]
     protected CircleCollider2D hurtboxSizeReference;
+    [SerializeField]
+    GameObject onFireFlareEffect;
     public int damage;
     public float crosshairMoveSpeed, lifeTime; 
     
@@ -24,6 +26,7 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
     }
     
     virtual protected void OnDeath() {
+        Instantiate(onFireFlareEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

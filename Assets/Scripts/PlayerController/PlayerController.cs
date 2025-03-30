@@ -112,8 +112,7 @@ public class PlayerController : MonoBehaviour
     nextFireTime = Time.time + shootCooldown;
 
     // Flash effect for visual feedback
-    float randRotation = Random.Range(0,360);
-    //Instantiate(flareEffect, transform.position, Quaternion.Euler(Vector3.forward*randRotation));
+    Instantiate(flareEffect, transform.position, transform.rotation);
 
     // Use OverlapCircle to find nearby enemies
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, hurtboxRadius, LayerMask.GetMask("Enemy"));
