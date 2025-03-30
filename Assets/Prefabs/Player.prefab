@@ -142,7 +142,7 @@ MonoBehaviour:
   maxLives: 3
   invincibilityDuration: 1.5
   hitEffectPrefab: {fileID: 0}
-  flareEffect: {fileID: 5899024453714276719, guid: 6e509fff9dca783449ea484c9c941376, type: 3}
+  flareEffect: {fileID: 1804518805759055470, guid: a3b8fafe36fdde94881919f6e4fbf3fe, type: 3}
   hitEffectDuration: 0.5
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
