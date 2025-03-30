@@ -203,6 +203,8 @@ MonoBehaviour:
   damage: 1
   crosshairMoveSpeed: 0
   lifeTime: 2
+  playerCollisionCollider: {fileID: 6490354721274685463}
+  sr: {fileID: 6569314308478479301}
   rb: {fileID: 8732174585770467874}
 --- !u!58 &6490354721274685463
 CircleCollider2D:
