@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour
 
     private void PausePerformed() {
         Debug.Log("Pause Performed");
-        if (!CheckIfCanInput()) return;
+        if (!CheckIfCanInput() && !GameManager.Instance.isPause) return;
 
         //GameSoundController.i.PlayMusic(GameSoundController.Sound.Music_TestMusic1);
 
