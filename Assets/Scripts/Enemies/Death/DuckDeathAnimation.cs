@@ -6,6 +6,8 @@ public class DuckDeathAnimation : MonoBehaviour
     [SerializeField]
     Animator animator;
     [SerializeField]
+    GameObject whiteSquareObject;
+    [SerializeField]
     float hitWaitTime, fallSpeed;
     void Start()
     {
@@ -13,9 +15,16 @@ public class DuckDeathAnimation : MonoBehaviour
     }
 
     private IEnumerator DeathAnimation() {
+        whiteSquareObject.SetActive(true);
+
         animator.Play("EnemyHit");
         ScreenEffectManager.Instance.DoImpactFramesWithBlackCanvas();
+
+        yield return new WaitForSecondsRealtime(ScreenEffectManager.Instance.BlackCanvasImpactFramesLength);
+        whiteSquareObject.SetActive(false);
+        
         yield return new WaitForSeconds(hitWaitTime);
+
         animator.Play("EnemyDeath");
         while(transform.position.y > -10) {
             yield return null;

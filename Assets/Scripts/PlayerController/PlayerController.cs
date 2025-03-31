@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Settings")]
     public int damage = 1;
     public int criticalMultiplier = 2;
-    public float hurtboxRadius = 1;
     public float shootCooldown = 0.5f; // Time between shots
     private float nextFireTime = 0f;
     
@@ -41,12 +40,14 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private bool isDead = false;
+    private CircleCollider2D col;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        col = GetComponent<CircleCollider2D>();
         
         if (audioSource == null && (hitSound != null || deathSound != null))
         {
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
     Instantiate(flareEffect, transform.position, transform.rotation);
 
     // Use OverlapCircle to find nearby enemies
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, hurtboxRadius, LayerMask.GetMask("Enemy"));
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, col.radius, LayerMask.GetMask("Enemy"));
     
     foreach (Collider2D enemyCollider in hitEnemies)
     {
