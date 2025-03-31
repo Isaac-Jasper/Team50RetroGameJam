@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScreenEffectManager : MonoBehaviour
 {
     [Header("Screenshake Settings")]
+    public static ScreenEffectManager Instance { get; private set; }
     [SerializeField]
     private GameObject ShakeCamera;
     private Vector3 startPos;
@@ -14,9 +15,11 @@ public class ScreenEffectManager : MonoBehaviour
     private Tweener activeTween;
 
     [Header("Impact Frames Settings")]
-    public static ScreenEffectManager Instance { get; private set; }
     [SerializeField]
     private float impactFramesLength, blackCanvasImpactFramesLength;
+
+    public float ImpactFramesLength {get => impactFramesLength; }
+    public float BlackCanvasImpactFramesLength {get => blackCanvasImpactFramesLength; }
     [SerializeField]
     private SpriteRenderer blackScreenCanvas;
 
