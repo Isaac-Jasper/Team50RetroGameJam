@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
@@ -24,8 +25,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField]
     protected int scoreValue = 10;
 
+    public List<EnemyCrosshairBase> currentCrossHairs = new();
     private readonly float FLY_UP_SPEED_MULT = 8;
-
     protected bool doMove = false;
 
     protected virtual void Start() {
@@ -61,7 +62,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             // Instantiate the crosshair at the enemy's position
             GameObject newCrosshair = Instantiate(crosshairPrefab, transform.position, Quaternion.identity);
-            
+            currentCrossHairs.Add(newCrosshair.GetComponent<EnemyCrosshairBase>());
             // Pass any necessary data to the crosshair
             EnemyCrosshairBase crosshairComponent = newCrosshair.GetComponent<EnemyCrosshairBase>();
             if (crosshairComponent != null)
@@ -91,6 +92,11 @@ public abstract class EnemyBase : MonoBehaviour
     
     protected virtual void OnDeath() {
         StopCoroutine(FlyUpStart());
+
+        foreach (EnemyCrosshairBase cross in currentCrossHairs) {
+            cross.RemoveCrosshair();
+        }
+        
         //play death animation
         if (deathAnimationObject != null) {
             Instantiate(deathAnimationObject, transform.position, deathAnimationObject.transform.rotation);
