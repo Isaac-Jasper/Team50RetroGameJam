@@ -40,7 +40,27 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
     }
     
     virtual protected void OnDeath() {
+        sourceEnemy.currentCrossHairs.Remove(this);
+
         Instantiate(onFireFlareEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+
+    public void RemoveCrosshair() {
+        StopAllCoroutines();
+        StartCoroutine(RemoveCrosshairAnimation());
+    }
+
+    public IEnumerator RemoveCrosshairAnimation() {
+        Color startColor = sr.color;
+        playerCollisionCollider.enabled = false;
+
+        float time = 0;
+        while (sr.color.a > 0) {
+            time += Time.deltaTime*5f;
+            sr.color = new Color(startColor.r,startColor.g,startColor.b,startColor.a - time);
+            yield return null;
+        }
         Destroy(gameObject);
     }
 
