@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject winPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
-    [SerializeField] private Button restartButton;
+    [SerializeField] private Button[] restartButtons;
+    [SerializeField] private Button[] mainMenuButtons;
 
     [Header("Start Menu UI")]
     [SerializeField] private Button startButton;
@@ -39,11 +41,18 @@ public class GameManager : MonoBehaviour
         // Initialize UI
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
-            
-        // Setup button listener
-        if (restartButton != null)
-            restartButton.onClick.AddListener(RestartGame);
+        if (winPanel != null) 
+            winPanel.SetActive(false);
 
+        addListeners();
+    }
+
+    private void addListeners()
+    {
+        foreach (Button b in restartButtons)
+            b.onClick.AddListener(RestartGame);
+        foreach (Button b in mainMenuButtons)
+            b.onClick.AddListener(ReturnToMenu);
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
     }
@@ -97,18 +106,33 @@ public class GameManager : MonoBehaviour
                 finalScoreText.SetText("FINAL SCORE: " + currentScore);
         }
     }
-    
-    private void RestartGame()
+
+    public void GameWon()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Debug.Log("Final Round Completed!");
+
+        // Delayed game over UI display
+        Invoke("ShowWinUI", gameOverDelay);
+    }
+
+    private void ShowWinUI()
+    {
+        if (winPanel != null)
+        {
+            Time.timeScale = 0;
+            winPanel.SetActive(true);
+        }
+    }
+
+    public void RestartGame()
     {
         Time.timeScale = 1;
         isGameOver = false;
         currentScore = 0;
-        
-        // Hide game over UI - ensure this runs before scene change
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(false);
 
-        // Reload the current scene
         InputManager.Instance.OnRestart?.Invoke();
     }
 
@@ -117,4 +141,14 @@ public class GameManager : MonoBehaviour
         SceneController.Instance.InitiateSceneChange(2);
     }
 
+    private void ReturnToMenu()
+    {
+        Time.timeScale = 1;
+        isGameOver = false;
+        currentScore = 0;
+
+        SceneController.Instance.InitiateSceneChange(1);
+    }
+
+    
 }

@@ -35,7 +35,7 @@ public class RoundManager : MonoBehaviour
     {   
         if(round >= totalRounds)
         {
-            StartCoroutine(endGame());
+            GameManager.Instance.GameWon();
             return;
         }
         else
@@ -67,16 +67,6 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenRounds/2);
 
         rounds[round - 1].StartRound();
-    }
-
-    private IEnumerator endGame()
-    {
-        Time.timeScale = 0;
-        roundText.SetText("FINAL ROUND COMPLETE!");
-        roundCounterPanel.SetActive(true);
-        yield return new WaitForSecondsRealtime(timeBetweenRounds);
-        roundCounterPanel.SetActive(false);
-        Time.timeScale = 1;
     }
 }
 
