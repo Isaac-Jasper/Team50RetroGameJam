@@ -535,6 +535,7 @@ Transform:
   - {fileID: 656251065}
   - {fileID: 787230976}
   - {fileID: 2036664611}
+  - {fileID: 929893694}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216266644
@@ -821,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 2219695972008458660, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: maxLives
       value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219695972008458660, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
+      propertyPath: invincibilityDuration
+      value: 9999999
       objectReference: {fileID: 0}
     - target: {fileID: 3161915130110954881, guid: 89a97e3cb1076ff429bade375f942c5d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1506,6 +1511,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 746739159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &929893693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929893694}
+  - component: {fileID: 929893695}
+  m_Layer: 0
+  m_Name: Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929893694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929893693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188138495}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &929893695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929893693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f378f8882175dee429887a8576b97a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesPerRound: 2
+  enemiesPerBurst: 1
+  timeBetweenEnemies: 5
+  enemies:
+  - {fileID: 6312720135170272, guid: 9163c710fd215eb40a3c5df28f68771d, type: 3}
+  - {fileID: -8328559083454643716, guid: 584d7ae6f0a97d64ab2d9d59d0ec016f, type: 3}
+  spawnLocations:
+  - {fileID: 173140830}
+  - {fileID: 861528016}
+  - {fileID: 304677892}
+  - {fileID: 1345224113}
+  - {fileID: 1191995963}
+  - {fileID: 1060847534}
+  - {fileID: 501310152}
+  - {fileID: 127725002}
+  - {fileID: 2078303742}
+  - {fileID: 1599055601}
+  - {fileID: 6508678}
+  - {fileID: 259944416}
+  - {fileID: 332852152}
+  - {fileID: 954004973}
+  - {fileID: 1018590346}
+  - {fileID: 832938545}
+  - {fileID: 945973353}
+  - {fileID: 1903075340}
+  - {fileID: 1328043716}
+  - {fileID: 739556184}
+  - {fileID: 370928590}
+  - {fileID: 818005819}
+  - {fileID: 1914843058}
 --- !u!1 &945973352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds:
+  - {fileID: 929893695}
   - {fileID: 2036664612}
   - {fileID: 1944241269}
   - {fileID: 1257633805}
