@@ -21,30 +21,25 @@ public class RoundController : MonoBehaviour
 
     public void StartRound()
     {
-        for(int i = 0; i < enemies.Length; i++)
-        {
-            EnemyBase temp = enemies[i];
-            int r = Random.Range(i, enemies.Length);
-            enemies[i] = enemies[r];
-            enemies[r] = temp;
-        }
-
         enemiesSpawned = 0;
         enemiesAlive = 0;
         StartCoroutine(SpawnTimer());
     }
 
     private IEnumerator SpawnTimer()
+{
+    while (true) 
     {
-        while (enemiesSpawned < enemiesPerRound)
+        int enemiesToSpawn = Mathf.Min(5, enemies.Length); 
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            if (enemiesPerBurst > enemiesPerRound - enemiesSpawned) enemiesPerBurst = enemiesPerRound - enemiesSpawned;
-            for (int i = 0; i < enemiesPerBurst; i++)
-                SpawnEnemy(enemies[enemiesSpawned], spawnLocations[Random.Range(0, spawnLocations.Length)].position);
-
-            yield return new WaitForSeconds(timeBetweenEnemies);
+            SpawnEnemy(enemies[Random.Range(0, enemies.Length)], 
+                      spawnLocations[Random.Range(0, spawnLocations.Length)].position);
         }
+
+        yield return new WaitForSeconds(timeBetweenEnemies); 
     }
+}
 
     private void SpawnEnemy(EnemyBase enemy, Vector2 position)
     {
