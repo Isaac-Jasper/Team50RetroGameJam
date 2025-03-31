@@ -46,9 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesText: {fileID: 0}
   scoreText: {fileID: 0}
+  livesContainer: {fileID: 0}
+  livesPrefab: {fileID: 923230134858601170, guid: 9af90e840ad000544ad486e4cca0ac67, type: 3}
+  blankImage: {fileID: 5108551421967233069, guid: 5314947cd22000340971a700d52f452b, type: 3}
   gameOverPanel: {fileID: 0}
+  winPanel: {fileID: 0}
+  pausePanel: {fileID: 0}
   finalScoreText: {fileID: 0}
-  restartButton: {fileID: 0}
+  restartButtons: []
+  mainMenuButtons: []
+  resumeButton: {fileID: 0}
+  startButton: {fileID: 0}
+  infiniteButton: {fileID: 0}
   gameOverDelay: 2
   autoRestart: 0
   autoRestartDelay: 3
+  isPause: 0

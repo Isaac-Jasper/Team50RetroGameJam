@@ -110,14 +110,14 @@ public class UpgradeManager : MonoBehaviour
             }));
 
         allUpgrades.Add(new Upgrade("LIFE STEAL", 
-            "10% CHANCE TO REGAIN LOST LIVES WHEN KILLING A DUCK", 
+            "5% CHANCE TO REGAIN LOST LIVES WHEN KILLING A DUCK", 
             upgradeIcons[6], 
             () => {
                 GlobalUpgradeSettings.lifeStealChance = 0.05f;
             }));
 
         allUpgrades.Add(new Upgrade("SHIELD", 
-            "You get a shield that prevents damage every minute.", 
+            "GRANTS A SHIELD THAT BLOCKS A SINGLE SHOT EVERY MINUTE.", 
             upgradeIcons[7], 
             () => {
                player.unlockShield();
