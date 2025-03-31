@@ -14,6 +14,11 @@ public class RoundController : MonoBehaviour
 
     private RoundManager roundManager;
 
+    public int getMaxEnemies()
+    {
+        return enemiesPerRound;
+    }
+
     private void Start()
     {
         roundManager = RoundManager.Instance;
@@ -59,6 +64,7 @@ public class RoundController : MonoBehaviour
     private void OnEnemyDestroyed()
     {
         enemiesAlive--;
+        RoundManager.Instance.updateDuckTrackerHit(enemiesSpawned - enemiesAlive);
 
         if (enemiesAlive <= 0 && enemiesSpawned >= enemiesPerRound)
         {

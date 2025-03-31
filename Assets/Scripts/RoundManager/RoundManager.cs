@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class RoundManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private GameObject roundCounterPanel;
     [SerializeField] private TextMeshProUGUI roundText;
     [SerializeField] private float timeBetweenRounds;
+    [SerializeField] private Transform duckTacker;
 
     void Start()
     {
@@ -61,12 +63,34 @@ public class RoundManager : MonoBehaviour
 
         roundText.SetText("ROUND " + round);
         roundCounterPanel.SetActive(true);
+        updateDuckTrackerMax();
         yield return new WaitForSeconds(timeBetweenRounds);
         roundCounterPanel.SetActive(false);
 
         yield return new WaitForSeconds(timeBetweenRounds/2);
 
         rounds[round - 1].StartRound();
+    }
+
+    private void updateDuckTrackerMax()
+    {
+        int maxEnemies = rounds[round - 1].getMaxEnemies();
+        
+        for (int i = 0; i < 15; i++)
+        {
+            RawImage duckSprite = duckTacker.GetChild(i).GetComponent<RawImage>();
+            if (i < maxEnemies)
+                duckSprite.color = Color.white;
+            else
+                duckSprite.color = Color.gray;
+
+        }
+    }
+
+    public void updateDuckTrackerHit(int ducksHit)
+    {
+        RawImage duckSprite = duckTacker.GetChild(ducksHit - 1).GetComponent<RawImage>();
+        duckSprite.color = Color.red;
     }
 }
 
