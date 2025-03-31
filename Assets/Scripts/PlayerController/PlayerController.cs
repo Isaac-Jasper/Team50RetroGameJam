@@ -98,11 +98,12 @@ public class PlayerController : MonoBehaviour
             shieldRenderer.enabled = true;
             isShielding = true;
         }
-        
+        /*
         if (Input.GetKeyDown(KeyCode.U))
     {
         UpgradeManager.Instance.ShowUpgradeSelection();
     }
+    */
     
     }
     
