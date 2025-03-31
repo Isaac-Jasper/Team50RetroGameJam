@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
 
     private void addListeners()
     {
-        InputManager.Instance.OnRestart.AddListener(RestartGame);
         InputManager.Instance.OnPause.AddListener(PauseGame);
         foreach (Button b in restartButtons)
             b.onClick.AddListener(RestartGame);
