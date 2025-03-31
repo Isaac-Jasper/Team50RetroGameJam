@@ -7,4 +7,5 @@ public static class GlobalUpgradeSettings
     public static float lifeStealChance = 0.0f;
     public static float criticalHitChance = 0.0f;
     public static bool dashUnlocked = false;
+    public static bool shieldUnlocked = false;
 }

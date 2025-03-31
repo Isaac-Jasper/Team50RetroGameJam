@@ -34,10 +34,13 @@ public class PlayerController : MonoBehaviour
     private bool canDash = false;
     private bool isDashing = false;
     private float dashCooldownTimer = 0f;
+    private bool isShielding = false;
+    private float shieldCooldownTimer = 60f;
     
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer shieldRenderer;
     private AudioSource audioSource;
     private bool isDead = false;
     private CircleCollider2D col;
@@ -45,8 +48,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
+        shieldRenderer = transform.Find("Shield").GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        col = GetComponent<CircleCollider2D>();
         col = GetComponent<CircleCollider2D>();
         
         if (audioSource == null && (hitSound != null || deathSound != null))
@@ -65,9 +70,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.OnFire.AddListener(Fire);
-        InputManager.Instance.OnDash.AddListener(DoDash);
         InputManager.Instance.OnKBMove.AddListener(MoveObject);
-
         GameManager.Instance.UpdateLivesDisplay(currentLives);
     }
     
@@ -78,6 +81,11 @@ public class PlayerController : MonoBehaviour
         {
             dashCooldownTimer -= Time.deltaTime;
         }
+
+        if (shieldCooldownTimer > 0)
+        {
+            shieldCooldownTimer -= Time.deltaTime;
+        }
         
         // Check for dash input
         if (canDash && GlobalUpgradeSettings.dashUnlocked && Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0)
@@ -85,10 +93,18 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if (isShielding == false && GlobalUpgradeSettings.shieldUnlocked && shieldCooldownTimer<= 0)
+        {
+            shieldRenderer.enabled = true;
+            isShielding = true;
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.U))
     {
         UpgradeManager.Instance.ShowUpgradeSelection();
     }
+    */
+    
     }
     
     private void MoveObject(Vector2 input)
@@ -98,12 +114,6 @@ public class PlayerController : MonoBehaviour
         movement = input; // Store for dash direction
     }   
 
-    private void DoDash() {
-        if (canDash && GlobalUpgradeSettings.dashUnlocked && dashCooldownTimer <= 0)
-        {
-            StartCoroutine(Dash());
-        }
-    }
 
     private void Fire()
 {
@@ -185,20 +195,31 @@ public class PlayerController : MonoBehaviour
     {
         canDash = true;
         GlobalUpgradeSettings.dashUnlocked = true;
-        Debug.Log("Dash ability unlocked!");
+    }
+
+    public void unlockShield()
+    {
+        isShielding = true;
+        shieldRenderer.enabled = true;
+        GlobalUpgradeSettings.shieldUnlocked = true;
+        shieldCooldownTimer = 0f;
     }
 
     public void getSmaller()
     {
         transform.localScale = new Vector3(.75f, .75f, .75f); // Double the size
-        Debug.Log("Smol!");
+    }
+
+    public void getBigger()
+    {
+        transform.localScale = new Vector3(1.25f, 1.25f, 1.25f); // Double the size
     }
 
 
     // New method to add a life
     public void AddLife()
     {
-        currentLives++;
+        currentLives += 3;
         GameManager.Instance.UpdateLivesDisplay(currentLives);
     }
 
@@ -213,6 +234,13 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damageAmount = 1)
     {
         if (isInvincible || isDead) return;
+        if(isShielding == true)
+        {
+            shieldRenderer.enabled = false;
+            shieldCooldownTimer = 60f;
+            isShielding = false;
+            return;
+        }
         
         currentLives -= damageAmount;
         GameManager.Instance.UpdateLivesDisplay(currentLives);
