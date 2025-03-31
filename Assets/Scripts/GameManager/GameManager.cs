@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Start Menu UI")]
     [SerializeField] private Button startButton;
+    [SerializeField] private Button infiniteButton;
 
     [Header("Game Settings")]
     [SerializeField] private float gameOverDelay = 2f;
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
             b.onClick.AddListener(ReturnToMenu);
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
+        if (infiniteButton != null)
+            infiniteButton.onClick.AddListener(InfiniteGame);
     }
 
     void Start()
@@ -139,6 +142,12 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         SceneController.Instance.InitiateSceneChange(2);
+    }
+
+    private void InfiniteGame()
+    {
+        Debug.Log("Hi");
+        SceneController.Instance.InitiateSceneChange(3);
     }
 
     private void ReturnToMenu()

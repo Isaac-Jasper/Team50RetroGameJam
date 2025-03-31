@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        SoundManager.Instance.PlayMusic(SoundManager.Instance.backgroundMusic);
+        //SoundManager.Instance.PlayMusic(SoundManager.Instance.backgroundMusic);
         InputManager.Instance.LockedInput = true;
         //Dont Destroy On Load Objects are stored in scene 0, if we are in scene 0 immediatly go to the first scene of the game
         //Scene 0 could also have intro things like a splash screen or cutscene.
