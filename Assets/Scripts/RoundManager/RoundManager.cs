@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -90,7 +91,7 @@ public class RoundManager : MonoBehaviour
     public void updateDuckTrackerHit(int ducksHit)
     {
         RawImage duckSprite = duckTacker.GetChild(ducksHit - 1).GetComponent<RawImage>();
-        duckSprite.color = Color.red;
+        duckSprite.color = new Color(1f, 0.3f, 0.3f, 1f);
     }
 }
 
