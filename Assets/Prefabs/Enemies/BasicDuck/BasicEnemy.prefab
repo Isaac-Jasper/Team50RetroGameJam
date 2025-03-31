@@ -193,7 +193,8 @@ MonoBehaviour:
   enemyMoveSpeed: 7
   aimRate: 2
   damageOnCollision: 1
-  scoreValue: 10
+  scoreValue: 5
+  currentCrossHairs: []
   aimPauseTimeUntilAim: 0.1
   aimPauseTimeAfterAim: 4
   angleRange: 0.055
