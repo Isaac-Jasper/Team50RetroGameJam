@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     
-    [Header("Game Over UI")]
+    [Header("Game Over/Win/Pause UI")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private Button[] restartButtons;
     [SerializeField] private Button[] mainMenuButtons;
+    [SerializeField] private Button resumeButton;
 
     [Header("Start Menu UI")]
     [SerializeField] private Button startButton;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     
     private int currentScore = 0;
     private bool isGameOver = false;
+    public bool isPause = false;
 
     private void Awake()
     {
@@ -49,12 +52,16 @@ public class GameManager : MonoBehaviour
 
     private void addListeners()
     {
+        InputManager.Instance.OnRestart.AddListener(RestartGame);
+        InputManager.Instance.OnPause.AddListener(PauseGame);
         foreach (Button b in restartButtons)
             b.onClick.AddListener(RestartGame);
         foreach (Button b in mainMenuButtons)
             b.onClick.AddListener(ReturnToMenu);
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
+        if (resumeButton != null)
+            resumeButton.onClick.AddListener(ResumeGame);
     }
 
     void Start()
@@ -148,6 +155,33 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
 
         SceneController.Instance.InitiateSceneChange(1);
+    }
+
+    private void PauseGame()
+    {
+        if (isGameOver)
+        {
+            Debug.Log("????");
+            return;
+        }
+        if (isPause)
+        {
+            Debug.Log("Unpausing");
+            ResumeGame();
+            return;
+        }
+        Debug.Log("Pausing");
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+        isPause = true;
+    }
+
+    private void ResumeGame()
+    {
+        Debug.Log("Unpausing");
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+        isPause = false;
     }
 
     
