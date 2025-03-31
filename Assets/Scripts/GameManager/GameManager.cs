@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Transform livesContainer;
+    [SerializeField] private GameObject livesPrefab;
+    [SerializeField] private GameObject blankImage;
     
     [Header("Game Over/Win/Pause UI")]
     [SerializeField] private GameObject gameOverPanel;
@@ -71,12 +74,49 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScore(0);
+        if (livesText != null)
+            livesText.SetText("LIVES: ");
     }
     
     public void UpdateLivesDisplay(int lives)
     {
-        if (livesText != null)
-            livesText.SetText("LIVES: " + lives);
+        if(livesContainer != null)
+        {
+            if(livesText != null)
+            {
+                if (lives > 3)
+                {
+                    if (lives < 10)
+                        livesText.SetText("LIVES: " + lives + "x");
+                    else
+                        livesText.SetText("LIVES:" + lives + "x");
+
+                    foreach (Transform child in livesContainer)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                    Instantiate(blankImage, livesContainer);
+                    Instantiate(blankImage, livesContainer);
+                    Instantiate(livesPrefab, livesContainer);
+
+                    return;
+                }
+                livesText.SetText("LIVES: ");
+            }              
+
+            foreach (Transform child in livesContainer)
+            {
+                Destroy(child.gameObject);
+            }
+            for (int i = 0; i < lives; i++)
+            {
+                Instantiate(livesPrefab, livesContainer);
+            }
+        }else
+        {
+            if (livesText != null)
+                livesText.SetText("LIVES: " + lives);
+        }
     }
     
     public void AddScore(int points)
