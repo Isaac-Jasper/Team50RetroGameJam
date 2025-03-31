@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float dashCooldownTimer = 0f;
     private bool isShielding = false;
+    private bool canShield =  false;
     private float shieldCooldownTimer = 60f;
     
     private Rigidbody2D rb;
@@ -93,17 +94,21 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (isShielding == false && GlobalUpgradeSettings.shieldUnlocked && shieldCooldownTimer<= 0)
+        if (isShielding == false && canShield && GlobalUpgradeSettings.shieldUnlocked && shieldCooldownTimer<= 0)
         {
             shieldRenderer.enabled = true;
             isShielding = true;
         }
-        /*
+
         if (Input.GetKeyDown(KeyCode.U))
     {
         UpgradeManager.Instance.ShowUpgradeSelection();
     }
-    */
+    
+    if (Input.GetKeyDown(KeyCode.I))
+    {
+        Die();
+    }
     
     }
     
@@ -199,6 +204,7 @@ public class PlayerController : MonoBehaviour
 
     public void unlockShield()
     {
+        canShield = true;
         isShielding = true;
         shieldRenderer.enabled = true;
         GlobalUpgradeSettings.shieldUnlocked = true;
@@ -219,7 +225,7 @@ public class PlayerController : MonoBehaviour
     // New method to add a life
     public void AddLife()
     {
-        currentLives += 3;
+        currentLives += 1;
         GameManager.Instance.UpdateLivesDisplay(currentLives);
     }
 

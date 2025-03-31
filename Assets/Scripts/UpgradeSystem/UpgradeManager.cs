@@ -74,7 +74,7 @@ public class UpgradeManager : MonoBehaviour
                 player.getBigger();
             }));
 
-        allUpgrades.Add(new Upgrade("SMOL", 
+        allUpgrades.Add(new Upgrade("DODGE MASTER", 
             "MAKES YOUR CROSSHAIR 20% SMALLER", 
             upgradeIcons[1], 
             () => {
@@ -82,9 +82,10 @@ public class UpgradeManager : MonoBehaviour
             }));
 
         allUpgrades.Add(new Upgrade("LIVE LONG", 
-            "GRANTS 3 ADDITIONAL LIVES", 
+            "GRANTS 2 ADDITIONAL LIVES", 
             upgradeIcons[2], 
             () => {
+                player.AddLife();
                 player.AddLife();
             }));
 
