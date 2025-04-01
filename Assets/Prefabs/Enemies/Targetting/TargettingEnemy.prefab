@@ -84,6 +84,7 @@ MonoBehaviour:
   aimRate: 2
   damageOnCollision: 1
   scoreValue: 10
+  currentCrossHairs: []
   aimPauseTimeUntilAim: 0.5
   aimPauseTimeAfterAim: 4
   angleRange: 0.055
@@ -238,7 +239,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1082298053941211166, guid: 8177c20b69013fb47842868d94ff274e, type: 3}
+  m_Sprite: {fileID: -9027230895726003522, guid: 1854a39f7092a1c4b893cff5690cbb5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -259,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 6873077352996846449}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14d9763d880e95f49866200abd7cf348, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56c5cb975c7ce8d49bd5b26871c8ff14, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
