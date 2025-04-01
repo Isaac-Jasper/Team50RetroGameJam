@@ -189,6 +189,10 @@ MonoBehaviour:
   crosshairPrefab: {fileID: 1725758782596052211, guid: b847cf2e12d287547bc9d6566b9a83c5, type: 3}
   spriteObject: {fileID: 3836609740207193182}
   deathAnimationObject: {fileID: 3411286863478415138, guid: 2987a31d7830b9843814305a9c5590a8, type: 3}
+  deathSound:
+  - {fileID: 8300000, guid: e2f3a61d2219dae4da39b05f70dd01c2, type: 3}
+  - {fileID: 8300000, guid: 30b6435b52c548147b2894fcee5ed9d4, type: 3}
+  - {fileID: 8300000, guid: a74e783fc86c9504886c7043620480d4, type: 3}
   health: 2
   enemyMoveSpeed: 7
   aimRate: 2

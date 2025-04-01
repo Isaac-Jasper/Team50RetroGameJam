@@ -162,11 +162,15 @@ MonoBehaviour:
   crosshairPrefab: {fileID: 0}
   spriteObject: {fileID: 1558397395459748216}
   deathAnimationObject: {fileID: 3411286863478415138, guid: b8324399753126d4db4b4d48cf4dd597, type: 3}
+  deathSound:
+  - {fileID: 8300000, guid: e2f3a61d2219dae4da39b05f70dd01c2, type: 3}
+  - {fileID: 8300000, guid: 30b6435b52c548147b2894fcee5ed9d4, type: 3}
   health: 1
   enemyMoveSpeed: 8
   aimRate: 0
   damageOnCollision: 1
   scoreValue: 10
+  currentCrossHairs: []
   angleRange: 0.106
 --- !u!50 &6057096837242971595
 Rigidbody2D:
