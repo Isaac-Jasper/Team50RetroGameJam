@@ -55,7 +55,10 @@ public class DistanceEnemy : EnemyBase
 
     protected override void OnSpawn() {
         //spawn on right or left side and fly toward middle
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null) {
+            playerTransform = player.transform;
+        }
         doMove = true;
         StartCoroutine(AimTimer());
     }

@@ -53,7 +53,10 @@ public class BigShotCrosshair : EnemyCrosshairBase
 
     protected override void OnSpawn() {
         StartCoroutine(SafeFrames());
-        moveDirection = FindFirstObjectByType<PlayerController>().gameObject.transform.position - transform.position;
+        PlayerController pc = FindFirstObjectByType<PlayerController>();
+        if (pc != null) {
+            moveDirection = pc.gameObject.transform.position - transform.position;
+        }
         StartCoroutine(LifeTimer());
         OnMove();
     }
