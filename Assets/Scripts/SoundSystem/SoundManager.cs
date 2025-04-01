@@ -33,7 +33,22 @@ public class SoundManager : MonoBehaviour
         musicSource.clip = clip;
         musicSource.loop = true;
         musicSource.Play();
-        musicSource.volume = 0.8f;
+        musicSource.volume = 0.2f;
+    }
+
+    public void PauseMusic()
+    {
+        musicSource.Pause();
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void ResumeMusic()
+    {
+        musicSource.Play();
     }
 
     public void PlaySound(AudioClip clip)

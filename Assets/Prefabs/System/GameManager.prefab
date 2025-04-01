@@ -61,4 +61,6 @@ MonoBehaviour:
   gameOverDelay: 2
   autoRestart: 0
   autoRestartDelay: 3
+  backgroundMusic: {fileID: 8300000, guid: 7ba83e8192ff92a42945b032792c69e0, type: 3}
+  deathMusic: {fileID: 8300000, guid: f8a0060d788715f408618effb16ebdd1, type: 3}
   isPause: 0

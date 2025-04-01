@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hitEffectDuration = 0.5f;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip shotSound;
     
     [Header("Dash Settings")]
     // [SerializeField] private float dashDistance = 3f;
@@ -129,9 +130,10 @@ public class PlayerController : MonoBehaviour
 
     // Flash effect for visual feedback
     Instantiate(flareEffect, transform.position, transform.rotation);
+        audioSource.PlayOneShot(shotSound);
 
-    // Use OverlapCircle to find nearby enemies
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, col.radius*transform.localScale.x, LayerMask.GetMask("Enemy"));
+        // Use OverlapCircle to find nearby enemies
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, col.radius*transform.localScale.x, LayerMask.GetMask("Enemy"));
 
     foreach (Collider2D enemyCollider in hitEnemies)
     {

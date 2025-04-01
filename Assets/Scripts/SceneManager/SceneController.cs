@@ -70,6 +70,7 @@ public class SceneController : MonoBehaviour
             yield return null;
         }
         fadeGroup.alpha = 1;
+        SoundManager.Instance.StopMusic();
         SceneManager.LoadScene(scene);
     }
 
