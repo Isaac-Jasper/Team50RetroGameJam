@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameOverDelay = 2f;
     [SerializeField] private bool autoRestart = false;
     [SerializeField] private float autoRestartDelay = 3f;
+
+    [Header("Music")]
+    [SerializeField] private AudioClip backgroundMusic;
+    [SerializeField] private AudioClip deathMusic;
     
     private int currentScore = 0;
     private bool isGameOver = false;
@@ -76,6 +80,8 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
         if (livesText != null)
             livesText.SetText("LIVES: ");
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+            SoundManager.Instance.PlayMusic(SoundManager.Instance.backgroundMusic);
     }
     
     public void UpdateLivesDisplay(int lives)
@@ -137,6 +143,7 @@ public class GameManager : MonoBehaviour
         
         isGameOver = true;
         Debug.Log("Game Over!");
+        SoundManager.Instance.PauseMusic();
         
         // Delayed game over UI display
         Invoke("ShowGameOverUI", gameOverDelay);
@@ -152,7 +159,8 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
-            
+            SoundManager.Instance.PlaySound(deathMusic);
+
             if (finalScoreText != null)
                 finalScoreText.SetText("FINAL SCORE: " + currentScore);
         }
@@ -189,12 +197,13 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        SoundManager.Instance.PlaySound(0);
         SceneController.Instance.InitiateSceneChange(2);
     }
 
     private void InfiniteGame()
     {
-        Debug.Log("Hi");
+        SoundManager.Instance.PlaySound(0);
         SceneController.Instance.InitiateSceneChange(3);
     }
 
@@ -223,6 +232,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Pausing");
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+        SoundManager.Instance.PauseMusic();
         isPause = true;
     }
 
@@ -232,6 +242,7 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1;
         isPause = false;
+        SoundManager.Instance.ResumeMusic();
     }
 
     

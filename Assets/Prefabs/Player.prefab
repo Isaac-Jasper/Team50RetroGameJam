@@ -144,8 +144,9 @@ MonoBehaviour:
   hitEffectPrefab: {fileID: 0}
   flareEffect: {fileID: 1804518805759055470, guid: a3b8fafe36fdde94881919f6e4fbf3fe, type: 3}
   hitEffectDuration: 0.5
-  hitSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 36d28e8ebe176fc4a84cfc5996fc4886, type: 3}
+  deathSound: {fileID: 8300000, guid: 407d328977ecccb4ab416afe8890ec6d, type: 3}
+  shotSound: {fileID: 8300000, guid: ed1089f73da4275439cc9a92db1a027f, type: 3}
   dashCooldown: 2
   dashDuration: 0.2
   dashEffectPrefab: {fileID: 0}
