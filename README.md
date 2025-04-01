@@ -4,7 +4,7 @@ https://youtu.be/Z2d0tbZlljA
 
 # Resources Used
 
-The FontStruction “Nintendo NES Font” (https://fontstruct.com/fontstructions/show/406653) by “Goatmeal” is licensed under a Creative Commons Attribution Non-commercial Share Alike license (http://creativecommons.org/licenses/by-nc-sa/3.0/).
+- The FontStruction “Nintendo NES Font” (https://fontstruct.com/fontstructions/show/406653) by “Goatmeal” is licensed under a Creative Commons Attribution Non-commercial Share Alike license (http://creativecommons.org/licenses/by-nc-sa/3.0/).
 
 # Sound Effects:
  - Lose_C_03 by cabled_mess -- https://freesound.org/s/350984/ -- License: Creative Commons 0
