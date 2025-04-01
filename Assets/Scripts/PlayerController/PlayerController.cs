@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour
     Instantiate(flareEffect, transform.position, transform.rotation);
 
     // Use OverlapCircle to find nearby enemies
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, col.radius, LayerMask.GetMask("Enemy"));
-    
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, col.radius*transform.localScale.x, LayerMask.GetMask("Enemy"));
+
     foreach (Collider2D enemyCollider in hitEnemies)
     {
         EnemyBase enemy = enemyCollider.GetComponent<EnemyBase>();
