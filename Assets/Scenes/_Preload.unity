@@ -509,8 +509,9 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: 7ba83e8192ff92a42945b032792c69e0, type: 3}
   soundEffects:
   - {fileID: 8300000, guid: a4133e7e8434248458f70ba361de07e0, type: 3}
-  - {fileID: 8300000, guid: 36d28e8ebe176fc4a84cfc5996fc4886, type: 3}
-  - {fileID: 8300000, guid: 407d328977ecccb4ab416afe8890ec6d, type: 3}
+  - {fileID: 8300000, guid: 30b6435b52c548147b2894fcee5ed9d4, type: 3}
+  - {fileID: 8300000, guid: b8798336a5b0ef84e9cf5965cefac3f2, type: 3}
+  - {fileID: 8300000, guid: a74e783fc86c9504886c7043620480d4, type: 3}
   - {fileID: 8300000, guid: 1b595ee3ae58a6544b646711d57b4c34, type: 3}
 --- !u!114 &1092077552
 MonoBehaviour:

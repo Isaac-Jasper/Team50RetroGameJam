@@ -12,6 +12,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected GameObject spriteObject;
     [SerializeField]
     protected GameObject deathAnimationObject;
+    [SerializeField]
+    protected AudioClip[] deathSound;
 
     [SerializeField]
     protected int health = 1;
@@ -92,6 +94,7 @@ public abstract class EnemyBase : MonoBehaviour
     
     protected virtual void OnDeath() {
         StopCoroutine(FlyUpStart());
+        SoundManager.Instance.PlaySound(deathSound[Random.Range(0, deathSound.Length)]);
 
         foreach (EnemyCrosshairBase cross in currentCrossHairs) {
             cross.RemoveCrosshair();
