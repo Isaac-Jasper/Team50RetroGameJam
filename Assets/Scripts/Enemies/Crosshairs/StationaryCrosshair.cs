@@ -20,7 +20,7 @@ public class StationaryCrosshair : EnemyCrosshairBase
     }
 
     protected override void OnFire() {
-        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, hurtboxSizeReference.radius, LayerMask.GetMask("Player"));
+        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, hurtboxSizeReference.radius*transform.localScale.x, LayerMask.GetMask("Player"));
         //play damage animation
         if (hitPlayer != null) {
             PlayerController player = hitPlayer.GetComponent<PlayerController>();
