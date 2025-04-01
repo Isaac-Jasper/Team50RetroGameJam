@@ -82,9 +82,10 @@ public class UpgradeManager : MonoBehaviour
             }));
 
         allUpgrades.Add(new Upgrade("LIVE LONG", 
-            "GRANTS 2 ADDITIONAL LIVES", 
+            "GRANTS 3 ADDITIONAL LIVES", 
             upgradeIcons[2], 
             () => {
+                player.AddLife();
                 player.AddLife();
                 player.AddLife();
             }));

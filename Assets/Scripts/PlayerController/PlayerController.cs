@@ -106,10 +106,10 @@ public class PlayerController : MonoBehaviour
         UpgradeManager.Instance.ShowUpgradeSelection();
     }
     
-    if (Input.GetKeyDown(KeyCode.I))
-    {
-        Die();
-    }
+    //if (Input.GetKeyDown(KeyCode.I))
+    //{
+    //    Die();
+    //}
     
     }
     
