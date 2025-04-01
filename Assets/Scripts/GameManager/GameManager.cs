@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
 
     private void addListeners()
     {
-        InputManager.Instance.OnPause.AddListener(PauseGame);
+        //InputManager.Instance.OnPause.AddListener(PauseGame);
+        Debug.LogError("add line back");
         foreach (Button b in restartButtons)
             b.onClick.AddListener(RestartGame);
         foreach (Button b in mainMenuButtons)

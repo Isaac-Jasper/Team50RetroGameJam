@@ -223,6 +223,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1246493095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &85490804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85490805}
+  - component: {fileID: 85490806}
+  m_Layer: 0
+  m_Name: Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &85490805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85490804}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1393116769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &85490806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85490804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f378f8882175dee429887a8576b97a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesPerRound: 2
+  enemiesPerBurst: 1
+  timeBetweenEnemies: 1
+  enemies:
+  - {fileID: 6312720135170272, guid: 9163c710fd215eb40a3c5df28f68771d, type: 3}
+  - {fileID: -8328559083454643716, guid: 584d7ae6f0a97d64ab2d9d59d0ec016f, type: 3}
+  spawnLocations:
+  - {fileID: 1305935764}
+  - {fileID: 1761437204}
 --- !u!114 &99093376 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3002273090979893757, guid: 6ccad14494f50924891f33b36645dded, type: 3}
@@ -2113,6 +2166,7 @@ Transform:
   - {fileID: 333012314}
   - {fileID: 2045151284}
   - {fileID: 349081807}
+  - {fileID: 85490805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1400014606
@@ -3025,6 +3079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds:
+  - {fileID: 85490806}
   - {fileID: 349081808}
   - {fileID: 1204157615}
   - {fileID: 506417819}
@@ -3035,7 +3090,7 @@ MonoBehaviour:
   - {fileID: 179264221}
   roundCounterPanel: {fileID: 939817146}
   roundText: {fileID: 2078035535}
-  timeBetweenRounds: 5
+  timeBetweenRounds: 1
   duckTacker: {fileID: 646721114}
 --- !u!4 &1712887664
 Transform:
@@ -4008,11 +4063,11 @@ SceneRoots:
   - {fileID: 1409821626}
   - {fileID: 989170938}
   - {fileID: 255274124}
+  - {fileID: 579293165}
   - {fileID: 1452854513}
   - {fileID: 1847853239}
   - {fileID: 1992606117}
   - {fileID: 1146336437}
-  - {fileID: 579293165}
   - {fileID: 4134288191991221651}
   - {fileID: 1400014606}
   - {fileID: 125501084}
