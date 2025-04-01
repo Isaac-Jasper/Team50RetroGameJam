@@ -39,7 +39,12 @@ public class TargettingCrosshair : EnemyCrosshairBase
     protected override void OnSpawn() {
         StartCoroutine(SafeFrames());
         StartCoroutine(LifeTimer());
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null) {
+            playerTransform = player.transform;
+        } else {
+            playerTransform= null;
+        }
         doMove = true;
     }
 }

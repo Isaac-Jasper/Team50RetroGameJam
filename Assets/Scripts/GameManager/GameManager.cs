@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,11 +35,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameOverDelay = 2f;
     [SerializeField] private bool autoRestart = false;
     [SerializeField] private float autoRestartDelay = 3f;
+    [SerializeField] private bool isEndless;
 
     [Header("Music")]
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip deathMusic;
     
+    private int remainingUpgrades = 8;
+    private int nextUpgradeScore = 150;
     private int currentScore = 0;
     private bool isGameOver = false;
     public bool isPause = false;
@@ -142,6 +147,17 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.SetText("SCORE: " + score);
+
+        if (remainingUpgrades != 0 && isEndless && score > nextUpgradeScore) {
+            nextUpgradeScore = score + 100 * (9 - remainingUpgrades);
+            remainingUpgrades--;
+            StartCoroutine(showUpgrades());
+        }
+    }
+
+    private IEnumerator showUpgrades() {
+        yield return new WaitForSeconds(0.1f);
+        UpgradeManager.Instance.ShowUpgradeSelection();
     }
     
     public void GameOver()

@@ -101,10 +101,10 @@ public class PlayerController : MonoBehaviour
             isShielding = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-    {
-        UpgradeManager.Instance.ShowUpgradeSelection();
-    }
+    //if (Input.GetKeyDown(KeyCode.U))
+    //{
+    //    UpgradeManager.Instance.ShowUpgradeSelection();
+    //}
     
     //if (Input.GetKeyDown(KeyCode.I))
     //{
