@@ -850,6 +850,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205228525473513452, guid: 437a06b8290a4a046925972ef0145aec, type: 3}
+      propertyPath: isEndless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205228525473513452, guid: 437a06b8290a4a046925972ef0145aec, type: 3}
       propertyPath: livesText
       value: 
       objectReference: {fileID: 162851078}
