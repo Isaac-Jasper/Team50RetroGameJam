@@ -67,42 +67,43 @@ public class UpgradeManager : MonoBehaviour
     private void InitializeUpgrades()
     {
         // Initialize all upgrades with their effects
-        allUpgrades.Add(new Upgrade("FIRE RATE UP", 
-            "INCREASES FIRE RATE BY 20%", 
+        allUpgrades.Add(new Upgrade("CHONK", 
+            "MAKES YOUR CROSSHAIR 20% BIGGER", 
             upgradeIcons[0], 
             () => {
-                player.shootCooldown *= 0.8f;
+                player.getBigger();
             }));
 
-        allUpgrades.Add(new Upgrade("FOCUSED AIM", 
+        allUpgrades.Add(new Upgrade("DODGE MASTER", 
             "MAKES YOUR CROSSHAIR 20% SMALLER", 
             upgradeIcons[1], 
             () => {
                 player.getSmaller();
             }));
 
-        allUpgrades.Add(new Upgrade("EXTRA LIFE", 
-            "GRANTS AN ADDITIONAL LIFE", 
+        allUpgrades.Add(new Upgrade("LIVE LONG", 
+            "GRANTS 2 ADDITIONAL LIVES", 
             upgradeIcons[2], 
             () => {
                 player.AddLife();
+                player.AddLife();
             }));
 
-        allUpgrades.Add(new Upgrade("SPEED UP", 
+        allUpgrades.Add(new Upgrade("I AM SPEED", 
             "INCREASES MOVEMENT SPEED BY 15%", 
             upgradeIcons[3], 
             () => {
                 player.moveSpeed *= 1.15f;
             }));
 
-        allUpgrades.Add(new Upgrade("FASTER RELOAD", 
+        allUpgrades.Add(new Upgrade("*RELOAD SOUNDS*", 
             "DECREASES RELOAD TIME 20%", 
             upgradeIcons[4], 
             () => {
                 player.shootCooldown *= 0.8f;
             }));
 
-        allUpgrades.Add(new Upgrade("DASH ABILITY", 
+        allUpgrades.Add(new Upgrade("POOF", 
             "PRESS SHIFT TO DASH IN MOVEMENT DIRECTION", 
             upgradeIcons[5], 
             () => {
@@ -110,17 +111,17 @@ public class UpgradeManager : MonoBehaviour
             }));
 
         allUpgrades.Add(new Upgrade("LIFE STEAL", 
-            "10% CHANCE TO REGAIN LOST LIVES WHEN KILLING A DUCK", 
+            "5% CHANCE TO REGAIN LOST LIVES WHEN KILLING A DUCK", 
             upgradeIcons[6], 
             () => {
-                GlobalUpgradeSettings.lifeStealChance = 0.1f;
+                GlobalUpgradeSettings.lifeStealChance = 0.05f;
             }));
 
-        allUpgrades.Add(new Upgrade("CITICAL HITS", 
-            "20% CHANCE TO DEAL DOUBLE DAMAGE", 
+        allUpgrades.Add(new Upgrade("SHIELD", 
+            "GRANTS A SHIELD THAT BLOCKS A SINGLE SHOT EVERY MINUTE.", 
             upgradeIcons[7], 
             () => {
-                GlobalUpgradeSettings.criticalHitChance = 0.2f;
+               player.unlockShield();
             }));
     }
 

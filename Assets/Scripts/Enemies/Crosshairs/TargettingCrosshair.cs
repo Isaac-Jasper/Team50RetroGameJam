@@ -19,7 +19,8 @@ public class TargettingCrosshair : EnemyCrosshairBase
     }
 
     protected override void OnMove() {
-        transform.position = Vector2.Lerp(transform.position, playerTransform.position, Time.deltaTime * crosshairMoveSpeed); //position shouldnt be an issue here since this shouldnt every use physics to collide wit hanything
+        if (playerTransform != null) 
+            transform.position = Vector2.Lerp(transform.position, playerTransform.position, Time.deltaTime * crosshairMoveSpeed); //position shouldnt be an issue here since this shouldnt every use physics to collide wit hanything
     }
 
     protected override void OnFire() {

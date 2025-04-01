@@ -10,14 +10,22 @@ public class GameManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Transform livesContainer;
+    [SerializeField] private GameObject livesPrefab;
+    [SerializeField] private GameObject blankImage;
     
-    [Header("Game Over UI")]
+    [Header("Game Over/Win/Pause UI")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
-    [SerializeField] private Button restartButton;
+    [SerializeField] private Button[] restartButtons;
+    [SerializeField] private Button[] mainMenuButtons;
+    [SerializeField] private Button resumeButton;
 
     [Header("Start Menu UI")]
     [SerializeField] private Button startButton;
+    [SerializeField] private Button infiniteButton;
 
     [Header("Game Settings")]
     [SerializeField] private float gameOverDelay = 2f;
@@ -26,6 +34,7 @@ public class GameManager : MonoBehaviour
     
     private int currentScore = 0;
     private bool isGameOver = false;
+    public bool isPause = false;
 
     private void Awake()
     {
@@ -39,24 +48,75 @@ public class GameManager : MonoBehaviour
         // Initialize UI
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
-            
-        // Setup button listener
-        if (restartButton != null)
-            restartButton.onClick.AddListener(RestartGame);
+        if (winPanel != null) 
+            winPanel.SetActive(false);
 
+        addListeners();
+    }
+
+    private void addListeners()
+    {
+        InputManager.Instance.OnPause.AddListener(PauseGame);
+        foreach (Button b in restartButtons)
+            b.onClick.AddListener(RestartGame);
+        foreach (Button b in mainMenuButtons)
+            b.onClick.AddListener(ReturnToMenu);
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
+
+        if (resumeButton != null)
+            resumeButton.onClick.AddListener(ResumeGame);
+
+        if (infiniteButton != null)
+            infiniteButton.onClick.AddListener(InfiniteGame);
     }
 
     void Start()
     {
         UpdateScore(0);
+        if (livesText != null)
+            livesText.SetText("LIVES: ");
     }
     
     public void UpdateLivesDisplay(int lives)
     {
-        if (livesText != null)
-            livesText.SetText("LIVES: " + lives);
+        if(livesContainer != null)
+        {
+            if(livesText != null)
+            {
+                if (lives > 3)
+                {
+                    if (lives < 10)
+                        livesText.SetText("LIVES: " + lives + "x");
+                    else
+                        livesText.SetText("LIVES:" + lives + "x");
+
+                    foreach (Transform child in livesContainer)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                    Instantiate(blankImage, livesContainer);
+                    Instantiate(blankImage, livesContainer);
+                    Instantiate(livesPrefab, livesContainer);
+
+                    return;
+                }
+                livesText.SetText("LIVES: ");
+            }              
+
+            foreach (Transform child in livesContainer)
+            {
+                Destroy(child.gameObject);
+            }
+            for (int i = 0; i < lives; i++)
+            {
+                Instantiate(livesPrefab, livesContainer);
+            }
+        }else
+        {
+            if (livesText != null)
+                livesText.SetText("LIVES: " + lives);
+        }
     }
     
     public void AddScore(int points)
@@ -97,18 +157,33 @@ public class GameManager : MonoBehaviour
                 finalScoreText.SetText("FINAL SCORE: " + currentScore);
         }
     }
-    
-    private void RestartGame()
+
+    public void GameWon()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Debug.Log("Final Round Completed!");
+
+        // Delayed game over UI display
+        Invoke("ShowWinUI", gameOverDelay);
+    }
+
+    private void ShowWinUI()
+    {
+        if (winPanel != null)
+        {
+            Time.timeScale = 0;
+            winPanel.SetActive(true);
+        }
+    }
+
+    public void RestartGame()
     {
         Time.timeScale = 1;
         isGameOver = false;
         currentScore = 0;
-        
-        // Hide game over UI - ensure this runs before scene change
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(false);
 
-        // Reload the current scene
         InputManager.Instance.OnRestart?.Invoke();
     }
 
@@ -117,4 +192,47 @@ public class GameManager : MonoBehaviour
         SceneController.Instance.InitiateSceneChange(2);
     }
 
+    private void InfiniteGame()
+    {
+        Debug.Log("Hi");
+        SceneController.Instance.InitiateSceneChange(3);
+    }
+
+    private void ReturnToMenu()
+    {
+        Time.timeScale = 1;
+        isGameOver = false;
+        currentScore = 0;
+
+        SceneController.Instance.InitiateSceneChange(1);
+    }
+
+    private void PauseGame()
+    {
+        if (isGameOver)
+        {
+            Debug.Log("????");
+            return;
+        }
+        if (isPause)
+        {
+            Debug.Log("Unpausing");
+            ResumeGame();
+            return;
+        }
+        Debug.Log("Pausing");
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+        isPause = true;
+    }
+
+    private void ResumeGame()
+    {
+        Debug.Log("Unpausing");
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+        isPause = false;
+    }
+
+    
 }
