@@ -80,8 +80,8 @@ MonoBehaviour:
   spriteObject: {fileID: 4029843126334381748}
   deathAnimationObject: {fileID: 3411286863478415138, guid: ab90b91828dac224a9f94872b5fe0da8, type: 3}
   health: 1
-  enemyMoveSpeed: 2
-  aimRate: 3
+  enemyMoveSpeed: 2.5
+  aimRate: 5
   damageOnCollision: 1
   scoreValue: 10
   currentCrossHairs: []
