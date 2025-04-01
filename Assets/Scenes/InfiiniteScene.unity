@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: upgradesPerSelection
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2621326626844349199, guid: 50b49d78a69662747b16a6c78d97fddd, type: 3}
+      propertyPath: upgradeIcons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6501750999218392375, guid: 50b49d78a69662747b16a6c78d97fddd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
