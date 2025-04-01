@@ -260,22 +260,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 584057111920278622}
-  crosshairPrefab: {fileID: 1725758782596052211, guid: c42f0e1ea4d598b4ab3e42c3291af71f, type: 3}
+  crosshairPrefab: {fileID: 4689032966538438663, guid: 49ade09ca3e93214a84430c36a071102, type: 3}
   spriteObject: {fileID: 882715642531432325}
-  deathAnimationObject: {fileID: 3411286863478415138, guid: 2987a31d7830b9843814305a9c5590a8, type: 3}
-  health: 25
+  deathAnimationObject: {fileID: 3411286863478415138, guid: 7224626e75aeabb4f9519dc68a3442bc, type: 3}
+  health: 12
   enemyMoveSpeed: 0.2
   aimRate: 3
   damageOnCollision: 1
   scoreValue: 10
   currentCrossHairs: []
-  crosshairPrefabBigAttack: {fileID: 1725758782596052211, guid: b847cf2e12d287547bc9d6566b9a83c5, type: 3}
+  crosshairPrefabBigAttack: {fileID: 1725758782596052211, guid: bbb94099c05f44c4289f0d8338af692a, type: 3}
+  DuckAnimation: {fileID: 3989096430919876393}
+  hitEffectTime: 0.1
   bigAttackPauseTimeUntilAim: 2
-  bigAttackPauseTimeAfterAim: 3
-  normalAttackPauseTimeUntilAim: 0
+  bigAttackPauseTimeAfterAim: 4
+  normalAttackPauseTimeUntilAim: 1.5
   normalAttackPauseTimeAfterAim: 0
-  bigAttackWeight: 2
-  normalAttackWeight: 3
-  shotsUntilBigAttack: 3
+  shotsUntilBigAttack: 2
   distance: 4
   rotateSpeed: 0.5

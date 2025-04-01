@@ -1,152 +1,72 @@
 using System.Collections;
 using UnityEngine;
 
-public class OrnsteinScript : EnemyBase
+public class BigShotCrosshair : EnemyCrosshairBase
 {
     [SerializeField]
-    GameObject crosshairPrefabQuickAttack;
+    private Rigidbody2D rb;
 
     [SerializeField]
-    Animator DuckAnimation;
+    private GameObject splitCrosshair;
     [SerializeField]
-    private float hitEffectTime;
-
-    [SerializeField]
-    private int quickAttackAmount;
-    [SerializeField]
-    private float QuickAttackPauseTimeUntilAim, QuickAttackPauseTimeAfterAim, QuickAttackBurstSpeed;
-    [SerializeField]
-    private int quickAttackWeight, bombAttackWeight, shotsUntilQuickAttack; 
+    private int numberOfSplits;
 
     [Header("% of circle path can deviate")]
     [Range(0.0f, 0.25f)]
     [SerializeField]
     private float angleRange; //deviates on both sides of path, for a total of 50% circle coverage
+
     private Vector3 moveDirection; //direction duck is currently moving
     private Vector2 nonZeroVelocity; //velocity of duck right before colliding with wall
 
+    protected void Start() {
+        OnSpawn();
+    }
     void Update() {
         if (rb.linearVelocity.magnitude > 0) {
             nonZeroVelocity = rb.linearVelocity;
         }
-        if (rb.linearVelocity.x > 0) {
-            transform.rotation = Quaternion.Euler(0,180,0);
-        } else if (rb.linearVelocity.x < 0) {
-            transform.rotation = Quaternion.Euler(0,0,0);
-        }
-    }
-
-    protected override void OnDeath() {
-        //add death logic
-        //play death animation here
-        ScreenEffectManager.Instance.Shake(1,0.5f);
-        
-        base.OnDeath();
-    }
-
-    public override void TakeDamage(int damageAmount = 1)
-    {
-        ScreenEffectManager.Instance.DoImpactFrames();
-        StartCoroutine(HitAnimation());
-
-        base.TakeDamage(damageAmount);
-    }
-
-    private IEnumerator HitAnimation() {
-        DuckAnimation.Play("EnemyHit");
-        yield return new WaitForSecondsRealtime(hitEffectTime);
-        DuckAnimation.Play("Enemy1Flying");
     }
 
     protected override void OnMove() {
-        rb.linearVelocity = moveDirection.normalized*enemyMoveSpeed;
+        rb.linearVelocity = moveDirection.normalized*crosshairMoveSpeed;
     }
 
-    //attack 1
-    protected override IEnumerator OnAim() {
-        yield return null;
-        //aiming animation here
-        GameObject spawnedCrosshair = SpawnCrosshair();  
-    }
-
-    //attack 2
-    private IEnumerator OnAim2() {
-        Vector2 temp = moveDirection;
+    protected override void OnFire() {
         moveDirection = Vector2.zero;
         OnMove();
-        yield return new WaitForSeconds(QuickAttackPauseTimeUntilAim);
-    
-        //aiming animation here
-        for (int i = 0; i < quickAttackAmount; i++) {
-            GameObject spawnedCrosshair = SpawnCrosshair2(); 
-            yield return new WaitForSeconds(QuickAttackBurstSpeed);
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, hurtboxSizeReference.radius*transform.localScale.x, LayerMask.GetMask("Player"));
+        //play damage animation
+        if (hitPlayer != null) {
+            PlayerController player = hitPlayer.GetComponent<PlayerController>();
+            player.TakeDamage(damage);
         }
-    
-        yield return new WaitForSeconds(QuickAttackPauseTimeAfterAim);
-        moveDirection = temp;
-        OnMove();
-    }
 
-    private GameObject SpawnCrosshair2() {
-        if (crosshairPrefab != null)
-        {
-            // Instantiate the crosshair at the enemy's position
-            GameObject newCrosshair = Instantiate(crosshairPrefabQuickAttack, transform.position, Quaternion.identity);
-            currentCrossHairs.Add(newCrosshair.GetComponent<EnemyCrosshairBase>());
-            // Pass any necessary data to the crosshair
-            EnemyCrosshairBase crosshairComponent = newCrosshair.GetComponent<EnemyCrosshairBase>();
-            if (crosshairComponent != null)
-            {
-                crosshairComponent.sourceEnemy = this;
-                
-                // Apply crosshair size reduction from upgrades
-                if (GlobalUpgradeSettings.crosshairSizeMultiplier != 1.0f)
-                {
-                    newCrosshair.transform.localScale *= GlobalUpgradeSettings.crosshairSizeMultiplier;
-                }
-            }
-            
-            return newCrosshair;
+        for (int i = 0; i < numberOfSplits; i ++) {
+            EnemyCrosshairBase split = Instantiate(splitCrosshair, transform.position, Quaternion.Euler(0,0,360 * i / numberOfSplits)).GetComponent<EnemyCrosshairBase>();
+            split.sourceEnemy = sourceEnemy;
         }
-        return null;
-    }
-
-    private IEnumerator AimTimer() {
-        int shotsSinceQuickShot = 0;
-        float rand = Random.Range(0, aimRate/5);
-        yield return new WaitForSeconds(aimRate + rand);
-        StartCoroutine(OnAim2());
-        while (true) {
-            rand = Random.Range(0, aimRate/5);
-
-            if (shotsSinceQuickShot == 0) {
-                yield return new WaitForSeconds(aimRate+ QuickAttackPauseTimeUntilAim + QuickAttackPauseTimeAfterAim + QuickAttackBurstSpeed*quickAttackAmount + rand);
-            } else {
-                yield return new WaitForSeconds(aimRate + rand);
-            }
-
-            if (shotsSinceQuickShot <= shotsUntilQuickAttack) {
-                StartCoroutine(OnAim());
-                shotsSinceQuickShot++;
-            } else {
-                int randAtk = Random.Range(1, quickAttackWeight + bombAttackWeight + 1);
-                if (randAtk <= bombAttackWeight) {
-                    StartCoroutine(OnAim());
-                    shotsSinceQuickShot++;
-                } else {
-                    StartCoroutine(OnAim2());
-                    shotsSinceQuickShot = 0;
-                }
-            }
-
-        }
+        //Debug.Log("Fired");
+        OnDeath();
     }
 
     protected override void OnSpawn() {
-        //spawn on right or left side and fly toward middle
-        moveDirection = Vector2.left*transform.position.x;
-        StartCoroutine(AimTimer());
+        StartCoroutine(SafeFrames());
+        moveDirection = FindFirstObjectByType<PlayerController>().gameObject.transform.position - transform.position;
+        StartCoroutine(LifeTimer());
         OnMove();
+    }
+
+    protected override IEnumerator LifeTimer() {
+            yield return new WaitForSeconds(lifeTime-0.8f);
+
+            for(int i = 0; i < 8; i++) {
+                StartCoroutine(FlashSprite(sr, Color.white, 0.05f));
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            OnFire();
     }
 
     void OnCollisionEnter2D(Collision2D col) {

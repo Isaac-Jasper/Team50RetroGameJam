@@ -7,13 +7,24 @@ public class SmoughScript : EnemyBase
     GameObject crosshairPrefabBigAttack;
 
     [SerializeField]
+    Animator DuckAnimation;
+    [SerializeField]
+    private float hitEffectTime;
+
+    [SerializeField]
     private float bigAttackPauseTimeUntilAim, bigAttackPauseTimeAfterAim, normalAttackPauseTimeUntilAim, normalAttackPauseTimeAfterAim;
     [SerializeField]
-    private int bigAttackWeight, normalAttackWeight, shotsUntilBigAttack; 
+    private int shotsUntilBigAttack; 
     [SerializeField]
     private float distance, rotateSpeed;
 
     private Transform playerTransform;
+    private SpriteRenderer sr;
+
+    override protected void Start() {
+        sr = spriteObject.GetComponent<SpriteRenderer>();
+        base.Start();
+    }
 
     void Update() {
         if (doMove) {
@@ -28,7 +39,33 @@ public class SmoughScript : EnemyBase
 
     protected override void OnDeath() {
         //add death logic
+        ScreenEffectManager.Instance.Shake(1,1);
         base.OnDeath();
+    }
+
+    public override void TakeDamage(int damageAmount = 1)
+    {
+        ScreenEffectManager.Instance.DoImpactFrames();
+        //StartCoroutine(HitAnimation());
+        StartCoroutine(FlashSprite(sr,Color.red, hitEffectTime));
+        base.TakeDamage(damageAmount);
+    }
+    private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
+    {
+        renderer.color = flashColor;
+        yield return new WaitForSeconds(duration);
+        renderer.color = Color.white;
+    }
+
+    private IEnumerator HitAnimation() {
+        doMove = false;
+        rb.linearVelocity = Vector2.zero;
+
+        DuckAnimation.Play("EnemyHit");
+        yield return new WaitForSecondsRealtime(hitEffectTime);
+        DuckAnimation.Play("Enemy1Flying");
+
+        doMove = true;
     }
 
     protected override void OnMove() {
@@ -98,23 +135,17 @@ public class SmoughScript : EnemyBase
             rand = Random.Range(0, aimRate/2);
 
             if (shotsSinceBigAttack == 0) {
-                yield return new WaitForSeconds(aimRate+ normalAttackPauseTimeUntilAim + normalAttackPauseTimeAfterAim + rand);
-            } else {
                 yield return new WaitForSeconds(aimRate+ bigAttackPauseTimeUntilAim + bigAttackPauseTimeAfterAim + rand);
+            } else {
+                yield return new WaitForSeconds(aimRate+ normalAttackPauseTimeAfterAim + normalAttackPauseTimeUntilAim + rand);
             }
 
             if (shotsSinceBigAttack <= shotsUntilBigAttack) {
                 StartCoroutine(OnAim());
                 shotsSinceBigAttack++;
             } else {
-                int randAtk = Random.Range(1, bigAttackWeight + normalAttackWeight + 1);
-                if (randAtk <= bigAttackWeight) {
-                    StartCoroutine(OnAim());
-                    shotsSinceBigAttack++;
-                } else {
-                    StartCoroutine(OnAim2());
-                    shotsSinceBigAttack = 0;
-                }
+                StartCoroutine(OnAim2());
+                shotsSinceBigAttack = 0;
             }
 
         }

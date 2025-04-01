@@ -64,7 +64,7 @@ abstract public class EnemyCrosshairBase : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
+    protected IEnumerator FlashSprite(SpriteRenderer renderer, Color flashColor, float duration)
     {
         Color originalColor = renderer.color;
         renderer.color = flashColor;
