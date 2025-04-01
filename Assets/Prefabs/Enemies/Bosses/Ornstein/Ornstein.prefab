@@ -157,7 +157,7 @@ MonoBehaviour:
   enemyMoveSpeed: 15
   aimRate: 1.5
   damageOnCollision: 1
-  scoreValue: 10
+  scoreValue: 100
   currentCrossHairs: []
   crosshairPrefabQuickAttack: {fileID: 1725758782596052211, guid: 9e57c0186b4c7fc458ebd10ccc1e9073, type: 3}
   DuckAnimation: {fileID: 954985894852858063}
