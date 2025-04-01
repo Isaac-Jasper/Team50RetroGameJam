@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3955e778ab699ce43b36cedae408c8cf
+guid: fd3540b907676cf49bcd109fe3cdccfd
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -129,7 +129,7 @@ TextureImporter:
       name: Dead_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 15
         y: 0
         width: 8
         height: 32
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc6392920f6b474439a194d7a0a59af2
+    spriteID: c9bbe09c62810c64a941b1bc40e7204c
     internalID: 0
     vertices: []
     indices: 

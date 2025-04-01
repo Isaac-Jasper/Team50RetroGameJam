@@ -361,10 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236a338658edfab4b91b584032b2f07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 125501082}
-  sfxSource: {fileID: 125501082}
-  backgroundMusic: {fileID: 0}
-  soundEffects: []
 --- !u!4 &125501084
 Transform:
   m_ObjectHideFlags: 0
@@ -521,63 +517,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 378633958}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &199528013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 199528015}
-  - component: {fileID: 199528014}
-  m_Layer: 0
-  m_Name: RoundManager (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &199528014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199528013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39bfde2ef8dc4b44bfd5793549cfa4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  roundCounterPanel: {fileID: 939817146}
-  roundText: {fileID: 2078035535}
-  timeBetweenRounds: 0
-  duckTacker: {fileID: 646721114}
---- !u!4 &199528015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199528013}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255274123
 GameObject:
@@ -3086,8 +3025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rounds:
-  - {fileID: 1204157615}
   - {fileID: 349081808}
+  - {fileID: 1204157615}
   - {fileID: 506417819}
   - {fileID: 2045151285}
   - {fileID: 1895762226}
@@ -4077,7 +4016,6 @@ SceneRoots:
   - {fileID: 4134288191991221651}
   - {fileID: 1400014606}
   - {fileID: 125501084}
-  - {fileID: 199528015}
   - {fileID: 1712887664}
   - {fileID: 378633958}
   - {fileID: 1393116769}
