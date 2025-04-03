@@ -2,6 +2,9 @@
 
 https://youtu.be/Z2d0tbZlljA
 
+# Art
+All art done by our team member Cooper Ross during the game jam.
+
 # Resources Used
 
 - The FontStruction “Nintendo NES Font” (https://fontstruct.com/fontstructions/show/406653) by “Goatmeal” is licensed under a Creative Commons Attribution Non-commercial Share Alike license (http://creativecommons.org/licenses/by-nc-sa/3.0/).
